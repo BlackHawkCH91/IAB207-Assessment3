@@ -34,7 +34,7 @@ class ReviewForm(FlaskForm):
   comment = TextAreaField('Review comment', validators=[InputRequired()]) # Must enter review comment
   submit = SubmitField('Create')
 
-#Create new event
+#Creates event form
 class EventForm(FlaskForm):
   event_name = StringField('Event Name', validators=[InputRequired()]) # Must enter event name
   description = TextAreaField('Description', validators=[InputRequired()]) # Must enter description
