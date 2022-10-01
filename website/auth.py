@@ -5,11 +5,18 @@ from werkzeug.security import generate_password_hash,check_password_hash
 #from .models import User
 from .forms import LoginForm,RegisterForm
 from flask_login import login_user, login_required,logout_user
-from . import db
+from . import db, login_manager
 
 
 #create a blueprint
 bp = Blueprint('auth', __name__)
+
+@login_manager.user_loader
+def load_user(user_id):
+    try:
+        return 1
+    except:
+        return None
 
 
 # this is the hint for a login function
