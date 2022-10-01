@@ -1,0 +1,111 @@
+#mainBox {
+    width: 80%;
+}
+
+#navbarSpacer {
+    display: block;
+}
+
+#eventImg {
+    margin: auto;
+    width: 80%;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 7px;
+}
+
+.eventInfo {
+    background-color: white;
+    box-shadow: 0px 3px 7px #636363;
+    padding: 30px;
+}
+
+.eventDateTime {
+    color: #D47800;
+    font-weight: bold;
+}
+
+.eventTickets {
+    font-weight: bold;
+}
+
+#imgSpacer {
+    padding: 30px;
+}
+
+#eventImg2 {
+    width: 100%;
+}
+
+#ticketNumber {
+    width: 70px;
+}
+
+#ratingDiv {
+    padding: 0 0 10px 0;
+}
+
+.rating {
+    font-size: 25px;
+}
+
+.ratingRadio {
+    display: none;
+}
+
+.review {
+    background-color: white;
+    box-shadow: 0px 3px 7px #636363;
+    padding: 30px;
+}
+
+.checked {
+    color: orange;
+}
+
+@media only screen and (max-width: 950px) {
+    #mainBox {
+        width: 95%;
+    }
+
+    #imgSpacer {
+        padding: 30px;
+    }
+
+    #eventImg {
+        height: auto;
+        width: 95%;
+        overflow: hidden;
+    }
+
+    .eventInfo {
+        padding: 20px;
+    }
+
+    .review {
+        padding: 20px;
+    }
+}
+
+@media only screen and (max-width: 475px) { 
+    #eventImg {
+        width: 100%;
+        border-radius: 0;
+    }
+    
+    #eventImg2 {
+        width: 150%;
+    }
+
+    #mainBox {
+        width: 99%;
+    }
+
+    #navbarSpacer {
+        display: none;
+    }
+
+    #imgSpacer {
+        padding: 15px;
+    }
+}

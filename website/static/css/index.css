@@ -1,0 +1,150 @@
+section {
+    background-color: #FFFFFF;
+    box-shadow: 0px 3px 7px #636363;
+    overflow: hidden;
+    width: 450px;
+    margin: 20px 15px;
+    position: relative;
+}
+
+.EventLink {
+    text-decoration: none;
+    color: black;
+}
+
+.EventLink:link, .EventLink:hover, .EventLink:active {
+    text-decoration: none;
+    color: black;
+}
+
+.eventImgContainer {
+    height: 200px;
+    overflow: hidden;
+}
+
+#UpcomingEventHeader {
+    margin: 60px 0;
+}
+
+.eventImg {
+    display: block;
+    margin: auto;
+    width: 150%;
+}
+
+.eventItem {
+    margin: 20px;
+}
+
+.eventDescription {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6; 
+            line-clamp: 6; 
+    -webkit-box-orient: vertical;
+    margin-bottom: 20px;
+}
+
+.eventDateTime {
+    color: #D47800;
+    font-weight: bold;
+}
+
+.eventTickets {
+    font-weight: bold;
+    position: absolute; 
+    bottom: 0;
+    margin-left: 35px;
+}
+
+.sportPicto {
+    width: 200px;
+    background-color: white;
+    text-align: center;
+}
+
+.pictoImg {
+    width: 70px;
+    margin-right: 10px;
+}
+
+.catCheckbox {
+    display: none;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;                
+}
+
+.sportPicto:hover {
+    background-color: #fafafa;
+    box-shadow: 0px 1px 5px #636363;
+}
+
+:checked + label {
+    background-color: #f0f0f0;
+    box-shadow: 0px 3px 7px #636363;
+}
+
+.sportPicto:active {
+    background-color: #f0f0f0;
+    box-shadow: 0px 3px 7px #636363;
+}
+
+#mainBox {
+    width: 90%;
+}
+
+@media only screen and (min-width: 1643px) {
+    section {
+        width: 450px;
+        margin: 20px 15px;
+    }
+}
+
+@media only screen and (max-width: 1643px) {
+    section {
+        width: 45%;
+        margin: 20px 0;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    section {
+        width: 100%;
+        margin: 20px 0;
+    }
+}
+
+@media only screen and (max-width: 505px) {
+    #mainBox {
+        width: 100%;
+    }
+
+    .pictoImg {
+        width: 45px;
+        margin-left: -10px;
+    }
+
+    .sportPicto {
+        width: 165px;
+    }
+}
+
+
+@media only screen and (max-width: 386px) {
+    .pictoImg {
+        width: 70px;
+        margin-left: -50px;
+    }
+
+    .sportPicto {
+        width: 250px;
+    }
+}
