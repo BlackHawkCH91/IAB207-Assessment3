@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block navlinks %}
+    {% if 1==0 %}
+        <ul class="navbar-nav mr-auto" style="margin-left: -32px;">
+            <ul class="nav-item">
+                <a class="nav-link" href="eventCreation.html">Create an event</a>
+            </ul>
+            <ul class="nav-item">
+                <a class="nav-link" href="userBookingHistory.html">Booking history</a>
+            </ul>
+            <ul class="nav-item">
+                <a class="nav-link" href="#">Welcome, Username</a>
+            </ul>
+        </ul>
+    {% else %}
+        <ul class="navbar-nav mr-auto" style="margin-left: -32px;">
+            <ul class="nav-item">
+                <a class="nav-link" href="eventCreation.html">Create an account</a>
+            </ul>
+            <ul class="nav-item">
+                <a class="nav-link" href="userBookingHistory.html">Log in</a>
+            </ul>
+        </ul>
+    {% endif %}
+{% endblock %}
