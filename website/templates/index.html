@@ -99,9 +99,9 @@
 
             {% for i in range(4) %}
                 <section id="firstEventItem">
-                    <a href="event.html" class="EventLink">
+                    <a href="{{ url_for('main.event') }}" class="EventLink">
                         <div class="eventImgContainer">
-                            <img class="eventImg" src="img/beach.jpg">
+                            <img class="eventImg" src="../static/img/beach.jpg">
                         </div>
 
                         <div class="eventItem p-3">

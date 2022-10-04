@@ -14,7 +14,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
     
-                <a class="navbar-brand m-2" href="index.html">Sport Events</a>
+                <a class="navbar-brand m-2" href="{{ url_for('main.index') }}">Sport Events</a>
             </div>
         
             <div class="collapse navbar-collapse justify-content-between navItems" id="navCollapse">
@@ -31,10 +31,10 @@
                     {% if True %}
                         <ul class="navbar-nav mr-auto" style="margin-left: -32px;">
                             <ul class="nav-item">
-                                <a class="nav-link" href="eventCreation.html">Create an event</a>
+                                <a class="nav-link" href="{{ url_for('main.eventCreation') }}">Create an event</a>
                             </ul>
                             <ul class="nav-item">
-                                <a class="nav-link" href="userBookingHistory.html">Booking history</a>
+                                <a class="nav-link" href="{{ url_for('main.userBookingHistory') }}">Booking history</a>
                             </ul>
                             <ul class="nav-item">
                                 <a class="nav-link" href="#">Welcome, Username</a>
