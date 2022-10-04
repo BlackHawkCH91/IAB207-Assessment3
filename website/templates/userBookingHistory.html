@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/userBookingHistory.css">
+    <script src="../static/js/IndexResponsive.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid" id="mainArea">
+        <div class="p-5"></div>
+        <h1>Booking history: </h1>
+        <hr>
+        <div class="p-2"></div>
+
+        {% for i in range(4) %}
+            <div class="booking row p-2">
+                <div class="col-sm-7 col-xs-12">
+                    <h4>Event name - Open</h4>
+                    <p>Order ID: 294620</p>
+                    <p>Booked on: 5/4/2022 6:34 PM</p>
+                    <p>From: 12/4/2022 12:00 PM</p>
+                    <p>To: 12/4/2022 3:00 PM</p>
+                </div>
+                <div class="p-3" id="imgSpacer"></div>
+                <div class="col-sm-5 col-xs-12">
+                    <img src="../static/img/beach.jpg" class="bookingImage">
+                </div>
+            </div>
+            <div class="p-4"></div>
+        {% endfor %} 
+    </div>
+{% endblock %}
