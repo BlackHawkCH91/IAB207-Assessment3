@@ -37,7 +37,13 @@
                                 <a class="nav-link" href="{{ url_for('main.userBookingHistory') }}">Booking history</a>
                             </ul>
                             <ul class="nav-item">
-                                <a class="nav-link" href="#">Welcome, Username</a>
+                                <div class="dropdown">
+                                    <div class="dropbtn nav-link">Welcome, Username</div>
+                                    <div class="dropdown-content">
+                                    <a href="#">Settings</a>
+                                    <a href="#">Logout</a>
+                                    </div>
+                                  </div>
                             </ul>
                         </ul>
                     {% else %}
@@ -46,7 +52,14 @@
                                 <a class="nav-link" href="eventCreation.html">Create an account</a>
                             </ul>
                             <ul class="nav-item">
-                                <a class="nav-link" href="userBookingHistory.html">Log in</a>
+                                <div class="dropdown">
+                                    <button class="dropbtn">Dropdown</button>
+                                    <div class="dropdown-content">
+                                    <a href="#">Link 1</a>
+                                    <a href="#">Link 2</a>
+                                    <a href="#">Link 3</a>
+                                    </div>
+                                  </div>
                             </ul>
                         </ul>
                     {% endif %}
