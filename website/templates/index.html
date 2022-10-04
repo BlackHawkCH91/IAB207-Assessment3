@@ -1,1 +1,111 @@
 {% extends 'base.html' %}
+{% block content %}
+    <div class="container-fluid m-auto" id="mainBox">
+        <div class="UpcomingEventHeader" id="UpcomingEventHeader">
+            <form class="form-inline" style="display: inline-block;">
+                <h1>Upcoming events in:</h1>
+                <select class="form-select form-select-lg">
+                    <option>Brisbane</option>
+                    <option>Toowoomba</option>
+                    <option>Mackay</option>
+                    <option>Townsville</option>
+                    <option>Gold Coast</option>
+                    <option>Cairns</option>
+                    <option>Charters Towers</option>
+                    <option>Warwick</option>
+                    <option>Gympie</option>
+                </select>
+            </form>
+        </div>
+
+        <div id="SportCategories">
+            <form>
+                <div class="d-flex flex-row justify-content-center flex-wrap">
+                    <div class="noselect">
+                        <input type="checkbox" id="cat1" class="catCheckbox" name="sportCat">
+                        <label class="p-3 m-1 sportPicto" for="cat1">
+                            <img class="pictoImg" src="../static/img/pictoImg/basketball.png">
+                            Basketball
+                        </label>
+                    </div>
+                    <div class="noselect">
+                        <input type="checkbox" id="cat2" class="catCheckbox" name="sportCat">
+                        <label class="p-3 m-1 sportPicto" for="cat2">
+                            <img class="pictoImg" src="../static/img/pictoImg/cricket.png">
+                            Cricket
+                        </label>
+                    </div>
+                    <div class="noselect">
+                        <input type="checkbox" id="cat3" class="catCheckbox" name="sportCat">
+                        <label class="p-3 m-1 sportPicto" for="cat3">
+                            <img class="pictoImg" src="../static/img/pictoImg/gymnastics.png">
+                            Gymnastics
+                        </label>
+                    </div>
+                    <div class="noselect">
+                        <input type="checkbox" id="cat4" class="catCheckbox" name="sportCat">
+                        <label class="p-3 m-1 sportPicto" for="cat4">
+                            <img class="pictoImg" src="../static/img/pictoImg/netball.png">
+                            Netball
+                        </label>
+                    </div>
+                    <div class="noselect">
+                        <input type="checkbox" id="cat5" class="catCheckbox" name="sportCat">
+                        <label class="p-3 m-1 sportPicto" for="cat5">
+                            <img class="pictoImg" src="../static/img/pictoImg/nfl.png">
+                            Football
+                        </label>
+                    </div>
+                    <div class="noselect">
+                        <input type="checkbox" id="cat6" class="catCheckbox" name="sportCat">
+                        <label class="p-3 m-1 sportPicto" for="cat6">
+                            <img class="pictoImg" src="../static/img/pictoImg/nrl.png">
+                            Rugby
+                        </label>
+                    </div>
+                    <div class="noselect">
+                        <input type="checkbox" id="cat7" class="catCheckbox" name="sportCat">
+                        <label class="p-3 m-1 sportPicto" for="cat7">
+                            <img class="pictoImg" src="../static/img/pictoImg/swimming.png">
+                            Swimming
+                        </label>
+                    </div>
+                    <div class="noselect">
+                        <input type="checkbox" id="cat8" class="catCheckbox" name="sportCat">
+                        <label class="p-3 m-1 sportPicto" for="cat8">
+                            <img class="pictoImg" src="../static/img/pictoImg/tennis.png">
+                            Tennis
+                        </label>
+                    </div>
+                </div>
+
+            </form>
+            <div class="d-flex flex-row justify-content-center flex-wrap">
+                
+            </div>
+        </div>
+        <div class="p-3"></div>
+        <div class="d-flex flex-wrap justify-content-around">
+            
+            {% for i in range(4) %}
+                <section id="firstEventItem">
+                    <a href="event.html" class="EventLink">
+                        <div class="eventImgContainer">
+                            <img class="eventImg" src="img/beach.jpg">
+                        </div>
+
+                        <div class="eventItem p-3">
+                            <h2>Event Title - Upcoming</h2>
+                            <p class="eventDateTime">10th August, 10:00 AM - 2:00 PM</p>
+                            <p style="font-weight: bold;">Sport: Rugby</p>
+                            <div class="eventDescription">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus atque inventore exercitationem aut saepe, tenetur ea harum maiores adipisci nemo a voluptate voluptatibus debitis facere fugiat veritatis esse corporis libero.</p>
+                            </div>
+                        </div>
+                        <p class="eventTickets">30 tickets available</p>
+                    </a>
+                </section>
+            {% endfor %} 
+        </div>
+    </div>
+{% endblock %}
