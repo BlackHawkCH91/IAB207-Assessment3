@@ -18,3 +18,7 @@ def eventCreation():
 @bp.route('/Event')
 def event():
     return render_template("event.html")
+
+@bp.route('/UserSettings')
+def userSettings():
+    return render_template("userSettings.html")
