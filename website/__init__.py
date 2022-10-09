@@ -6,6 +6,9 @@ from flask_login import LoginManager
 
 db=SQLAlchemy()
 
+#initialize the login manager
+login_manager = LoginManager()
+
 #create a function that creates a web application
 # a web server will run this web application
 def create_app():
@@ -21,8 +24,6 @@ def create_app():
 
     bootstrap = Bootstrap5(app)
     
-    #initialize the login manager
-    login_manager = LoginManager()
     
     #set the name of the login function that lets user login
     # in our case it is auth.login (blueprintname.viewfunction name)
