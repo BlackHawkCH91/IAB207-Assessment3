@@ -26,7 +26,7 @@ class Events(db.Model):
     EndDate = db.Column(db.DateTime)
     description = db.Column(db.String(500))
     Image = db.Column(db.String(400))
-    MaxTickets = db.Column(db.Interger)
+    MaxTickets = db.Column(db.Integer)
     
 	#relations
     reviews = db.relationship('Reviews', backref='event')
@@ -47,7 +47,7 @@ class EventStatus(db.Model):
     def __repr__(self): #print
         return "<Event: {}>".format(self.name)
 class Catergory(db.Model):
-    __tablename__ = 'categories'
+    __tablename__ = 'catergories'
     CatergoryId = db.Column(db.Integer, primary_key=True)
     CatergoryName = db.Column(db.String(100))
 
@@ -75,7 +75,7 @@ class Bookings(db.Model):
     Title = db.Column(db.String(100))
     Content = db.Column(db.String(400))
     BookedOn = db.Column(db.DateTime, default=datetime.now())
-    TicketNum = db.Column(db.Interger)
+    TicketNum = db.Column(db.Integer)
     #foreign keys
     User_id = db.Column(db.Integer, db.ForeignKey('users.UserId'))
     Event_id = db.Column(db.Integer, db.ForeignKey('events.EventId'))
