@@ -20,6 +20,10 @@ def eventCreation():
 def event():
     return render_template("event.html")
 
+@bp.route('/UpdateEvent')
+def updateEvent():
+    return render_template("updateEvent.html")
+
 @bp.route('/UserSettings')
 def userSettings():
     return render_template("userSettings.html")
