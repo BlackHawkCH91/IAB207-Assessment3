@@ -1,3 +1,4 @@
+from enum import unique
 from . import db
 from datetime import datetime
 from flask_login import UserMixin
@@ -7,6 +8,7 @@ from flask_login import UserMixin
 class Users(db.Model, UserMixin):
     __tablename__='users'
     UserId = db.Column(db.Integer, primary_key=True)
+    Username = db.Column(db.String(100), unique=True)
     FirstName = db.Column(db.String(100), index=True, nullable=False)
     LastName = db.Column(db.String(100), index=True, nullable=False)
     Email = db.Column(db.String(100), index=True, nullable=False)
