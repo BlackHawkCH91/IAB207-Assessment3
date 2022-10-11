@@ -1,9 +1,10 @@
 from . import db
 from datetime import datetime
+from flask_login import UserMixin
 
 #Classes have been created per Christians database model.
 #corrections for a later date, password hashing, confirm rating implimentation
-class Users(db.Model):
+class Users(db.Model, UserMixin):
     __tablename__='users'
     UserId = db.Column(db.Integer, primary_key=True)
     FirstName = db.Column(db.String(100), index=True, nullable=False)
