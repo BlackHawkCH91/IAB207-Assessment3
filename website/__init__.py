@@ -33,10 +33,10 @@ def create_app():
     login_manager.init_app(app)
 
     # Create loader function that takes a user ID and returns a User
-    from .models import User # importing here to avoid circular references
+    from .models import Users # importing here to avoid circular references
     @login_manager.user_loader
     def load_user(user_id):
-        return User.query.get(int(user_id))
+        return Users.query.get(int(user_id))
 
     # Handle 404 error
     @app.errorhandler(404) 
@@ -50,6 +50,9 @@ def create_app():
     from . import views
     app.register_blueprint(views.bp)
 
+    from . import events
+    app.register_blueprint(events.bp)
+    
     from . import auth
     app.register_blueprint(auth.bp)
     
