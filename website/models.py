@@ -20,6 +20,9 @@ class Users(db.Model, UserMixin):
     reviews = db.relationship('Reviews', backref='user')
     bookings = db.relationship('Bookings', backref='user')
 
+    def get_id(self):
+        return (self.UserId)
+
 class Events(db.Model):
     __tablename__ = 'events'
     EventId = db.Column(db.Integer, primary_key=True)

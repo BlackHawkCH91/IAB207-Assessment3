@@ -20,7 +20,7 @@ def login():
         #get the username and password from the database
         uname = login_form.user_name.data
         password = login_form.password.data
-        u1 = Users.query.filter_by(UserId=uname).first()
+        u1 = Users.query.filter_by(Username=uname).first()
         #if there is no user with that name
         if u1 is None:
             error='Incorrect user name'
@@ -47,7 +47,7 @@ def register():
             pwd = register.password.data
             email=register.email_id.data
             #check if a user exists
-            u1 = Users.query.filter_by(UserId=uname).first()
+            u1 = Users.query.filter_by(Username=uname).first()
             if u1:
                 flash('User name already exists, please login')
                 return redirect(url_for('auth.login'))
@@ -55,7 +55,7 @@ def register():
             pwd_hash = generate_password_hash(pwd)
             #create a new user model object
             new_user = Users(
-                UserId=uname, FirstName = fname, LastName = lname, 
+                Username=uname, FirstName = fname, LastName = lname, 
                 password_hash=pwd_hash, Email=email)
             db.session.add(new_user)
             db.session.commit()
