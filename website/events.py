@@ -15,7 +15,7 @@ def show(EventId):
     return render_template('/event.html', event=event, form=cform)
 
 @bp.route('/eventcreation', methods = ['GET', 'POST'])
-#@login_required..........commented out for testing untill auth is completed..........................
+@login_required
 def create():
   print('Method type: ', request.method)
   form = EventForm()
@@ -52,7 +52,8 @@ def review(EventId):
       review = Reviews(title=form.title.data,
                        rating=form.rating.data,
                        comment=form.comment.data,
-                       submit=form.submit.data, ) 
+                       submit=form.submit.data,
+                       user=current_user ) 
       db.session.add(review) 
       db.session.commit() 
       print('Your review has been added', 'success') 

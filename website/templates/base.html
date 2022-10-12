@@ -28,7 +28,7 @@
         
                 <!-- Other links-->
                 {% block navlinks %}
-                    {% if True %}
+                    {% if current_user.is_authenticated %}
                         <ul class="navbar-nav mr-auto" style="margin-left: -32px;">
                             <ul class="nav-item">
                                 <a class="nav-link" href="{{ url_for('main.eventCreation') }}">Create an event</a>
@@ -37,16 +37,19 @@
                                 <a class="nav-link" href="{{ url_for('main.userBookingHistory') }}">Booking history</a>
                             </ul>
                             <ul class="nav-item">
-                                <a class="nav-link" href="#">Welcome, Username</a>
+                                <a class="nav-link disabled text-muted" href="#">Welcome, {{current_user.FirstName}}</a>
+                            </ul>
+                            <ul class="nav-item">
+                                <a class="nav-link" href="{{ url_for('auth.logout') }}">Log Out</a>
                             </ul>
                         </ul>
                     {% else %}
                         <ul class="navbar-nav mr-auto" style="margin-left: -32px;">
                             <ul class="nav-item">
-                                <a class="nav-link" href="eventCreation.html">Create an account</a>
+                                <a class="nav-link" href="{{ url_for('auth.register') }}">Create an account</a>
                             </ul>
                             <ul class="nav-item">
-                                <a class="nav-link" href="userBookingHistory.html">Log in</a>
+                                <a class="nav-link" href="{{ url_for('auth.login') }}">Log in</a>
                             </ul>
                         </ul>
                     {% endif %}
