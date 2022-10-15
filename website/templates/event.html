@@ -21,16 +21,16 @@
     <div class="container-fluid" id="mainBox">
 
         <div id="imgSpacer"></div>
-        <h1>Event Title - Upcoming</h1>
+        <h1>{{event.EventName}} - {{event.Status_id}}</h1>
         <div class="p-2"></div>
         <div class="container-fluid eventInfo">
-            <p class="eventDateTime">10th August, 10:00 AM - 2:00 PM</p>
+            <p class="eventDateTime">{{event.StartDate}} - {{event.EndDate}}</p>
             <div class="p-2"></div>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda et autem suscipit molestiae quisquam voluptatem iste molestias dolorem dolor ipsam asperiores consequuntur nesciunt id itaque nisi praesentium aperiam amet blanditiis libero eaque, deleniti est vitae sapiente! Autem eum recusandae nihil ipsum enim consequuntur deserunt? Accusamus aut, possimus magni sequi illo sint sunt quam quis adipisci, aliquid non reiciendis dolores enim!</p>
+            <p>{{event.description}}</p>
             <div class="p-2"></div>
-            <p>Location: 2 George St, Brisbane City QLD 4000</p>
+            <p>Location: {{event.Location}}</p>
             <div class="p-2"></div>
-            <p class="eventTickets">30 tickets available</p>
+            <p class="eventTickets">{{event.MaxTickets}} tickets available</p>
             <div class="p-2"></div>
 
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ticketModal">

@@ -31,7 +31,7 @@
                     {% if current_user.is_authenticated %}
                         <ul class="navbar-nav mr-auto" style="margin-left: -32px;">
                             <ul class="nav-item">
-                                <a class="nav-link" href="{{ url_for('main.eventCreation') }}">Create an event</a>
+                                <a class="nav-link" href="{{ url_for('event.create') }}">Create an event</a>
                             </ul>
                             <ul class="nav-item">
                                 <a class="nav-link" href="{{ url_for('main.userBookingHistory') }}">Booking history</a>

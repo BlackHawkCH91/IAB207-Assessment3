@@ -97,22 +97,23 @@
         <div class="p-3"></div>
         <div class="d-flex flex-wrap justify-content-around">
 
-            {% for i in range(4) %}
+            {% for event in events %}
                 <section id="firstEventItem">
-                    <a href="{{ url_for('main.event') }}" class="EventLink">
+                    <a href="{{url_for('event.show', id=event.EventId)}}" class="EventLink">
                         <div class="eventImgContainer">
-                            <img class="eventImg" src="../static/img/beach.jpg">
+                            <img class="eventImg" src="{{event.Image}}" alt="{{event.name}}">
                         </div>
 
                         <div class="eventItem p-3">
-                            <h2>Event Title - Upcoming</h2>
-                            <p class="eventDateTime">10th August, 10:00 AM - 2:00 PM</p>
-                            <p style="font-weight: bold;">Sport: Rugby</p>
+                            <h2>{{event.EventName}} - {{event.Status_id}}</h2>
+                            <p class="eventDateTime">Starting: {{event.StartDate}}</p>
+                            <p class="eventDateTime">Ending: {{event.EndDate}}</p>
+                            <p style="font-weight: bold;">Sport: {{event.Catergory_id}}</p>
                             <div class="eventDescription">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus atque inventore exercitationem aut saepe, tenetur ea harum maiores adipisci nemo a voluptate voluptatibus debitis facere fugiat veritatis esse corporis libero.</p>
+                                <p>{{event.description}}</p>
                             </div>
                         </div>
-                        <p class="eventTickets">30 tickets available</p>
+                        <p class="eventTickets">Tickets: {{event.MaxTickets}}</p>
                     </a>
                 </section>
             {% endfor %} 
