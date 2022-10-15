@@ -22,14 +22,14 @@ def create():
   if form.validate_on_submit():
     #checks and returns image
     db_file_path=check_upload_file(form)
-    event=Events(name=form.event_name.data,description=form.description.data, 
-    image=db_file_path,location=form.location.data, start_time=form.start_time.data,
-     end_time=form.end_time.data, max_tickets=form.max_tickets.data)
+    event=Events(EventName=form.event_name.data,description=form.description.data, 
+    Image=db_file_path,Location=form.location.data, StartDate=form.start_time.data,
+     EndDate=form.end_time.data, MaxTickets=form.max_tickets.data, Catergory_id=form.Catergory_id.data, Status_id=form.Status_id.data )
     db.session.add(event)
     db.session.commit()
     print('Successfully created new sports event', 'success')
     #redirect
-    return redirect(url_for('events.eventcreation'))
+    return redirect(url_for('event.create'))
   return render_template('eventCreation.html', form=form)
 
 def check_upload_file(form):
@@ -37,7 +37,7 @@ def check_upload_file(form):
   fp=form.image.data
   filename=fp.filename
   BASE_PATH=os.path.dirname(__file__)
-  upload_path=os.path.join(BASE_PATH,'static/image',secure_filename(filename))
+  upload_path=os.path.join(BASE_PATH,'static/img',secure_filename(filename))
   db_upload_path='/static/img/' + secure_filename(filename)
   fp.save(upload_path)
   return db_upload_path

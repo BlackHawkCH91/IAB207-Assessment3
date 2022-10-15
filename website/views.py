@@ -12,10 +12,6 @@ def index():
 def userBookingHistory():
     return render_template("userBookingHistory.html")
 
-@bp.route('/EventCreation')
-def eventCreation():
-    return render_template("eventCreation.html")
-
 @bp.route('/Event')
 def event():
     return render_template("event.html")

@@ -1,8 +1,9 @@
 from datetime import datetime
+from logging import PlaceHolder
 from xmlrpc.client import DateTime
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, DateTimeField
-from wtforms.validators import InputRequired, Length, Email, EqualTo
+from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, DateTimeField, SelectField
+from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 
 # Define accepted file types
@@ -44,7 +45,10 @@ class EventForm(FlaskForm):
     FileRequired(message='Image cannot be empty'),
     FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')]) # Only accepts correct file types
   location = StringField('Location', validators=[InputRequired()]) # Must enter location
-  start_time = DateTimeField('Start Time', validators=[InputRequired()]) # Must enter start time
-  end_time = DateTimeField('End Time', validators=[InputRequired()]) # Must enter end time
+  Catergory_id = SelectField(u'Select Sport', choices=[(1, 'Basketball'), (2, 'Cricket'), (3, 'Gymnastics'), (4, 'Netball'),
+  (5, 'Football'), (6, 'Rugby'), (7, 'Swimming'), (8, 'Tennis')], validators=[InputRequired()])
+  start_time = DateTimeField('Start Time', validators=[InputRequired()], format='%Y-%m-%d %H:%M:%S', description="YYYY-MM-DD HH:MM:SS") # Must enter start time
+  end_time = DateTimeField('End Time', validators=[InputRequired()], format='%Y-%m-%d %H:%M:%S', description="YYYY-MM-DD HH:MM:SS") # Must enter end time
   max_tickets = StringField('Max Ticket Number', validators=[InputRequired()]) # Must enter max tickets
+  Status_id = SelectField(u'Select status', choices=[(1, 'Upcoming'), (2, 'Inactive'), (3, 'Booked'), (4, 'Cancelled')], validators=[InputRequired()])
   submit = SubmitField("Create")

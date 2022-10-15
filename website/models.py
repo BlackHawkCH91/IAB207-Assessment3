@@ -32,6 +32,8 @@ class Events(db.Model):
     EndDate = db.Column(db.DateTime)
     description = db.Column(db.String(500))
     Image = db.Column(db.String(400))
+    Status_id = db.Column(db.Integer)
+    Catergory_id = db.Column(db.Integer)
     MaxTickets = db.Column(db.Integer)
     
 	#relations
