@@ -8,9 +8,9 @@ from flask_login import login_required, current_user
 
 bp = Blueprint('event',__name__, url_prefix='/events')
 
-@bp.route('/<EventId>')
-def show(EventId):
-    event = Events.query.filter_by(EventId=EventId).first()
+@bp.route('/<id>')
+def show(id):
+    event = Events.query.filter_by(EventId=id).first()
     cform = ReviewForm()
     return render_template('/event.html', event=event, form=cform)
 
