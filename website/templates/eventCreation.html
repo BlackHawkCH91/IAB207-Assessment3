@@ -7,68 +7,12 @@
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/eventCreation.css">
 {% endblock %}
-
+{% import "bootstrap/form.html" as wtf %}
 {% block content %}
     <div class="container-fluid eventForm">
         <div class="p-4"></div>
         <h1>Event Details:</h1>
-        <hr>
 
-        <div class="p-2"></div>
-        <form>
-            <h4>Event name:</h4>
-            <input type="text" class="form-control" placeholder="Event Name">
-
-            <div class="p-1"></div>
-            <div class="form-group row">
-                <div class="col-lg-8 col-md-6 col-sm-12">
-                    <h4>Location:</h4>
-                    <input type="text" class="form-control" placeholder="Location">
-                </div>
-                <div class="p-1 lineBreaks"></div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <h4>Sport:</h4>
-                    <select class="form-select" name="sport">
-                        <option>Basketball</option>
-                        <option>Cricket</option>
-                        <option>Gymnastics</option>
-                        <option>Netball</option>
-                        <option>Football</option>
-                        <option>Rugby</option>
-                        <option>Swimming</option>
-                        <option>Tennis</option>
-                    </select>
-                </div>
-                
-            </div>
-
-            <div class="p-1"></div>
-            <div class="form-group row">
-                <div class="col-md-8 col-sm-12">
-                    <div class="row">
-                        <div class="col-sm-6 col-xs-12">
-                            <h4>Start:</h4>
-                            <input type="datetime-local" class="form-control">
-                        </div>
-                        <div class="col-sm-6 col-xs-12">
-                            <h4>End:</h4>
-                            <input type="datetime-local" class="form-control">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-1 lineBreaks"></div>
-                <div class="col-md-4 col-sm-12">
-                    <h4>Number of tickets:</h4>
-                    <input type="number" class="form-control" id="ticketNumInput" value="1">
-                </div>
-            </div>
-
-            <div class="p-4"></div>
-            <div class="col-12">
-                <h4>Description:</h4>
-                <textarea class="form-control" rows="5"></textarea>
-            </div>
-        </form>
+        {{wtf.render_form(form)}}
     </div>
 {% endblock %}
