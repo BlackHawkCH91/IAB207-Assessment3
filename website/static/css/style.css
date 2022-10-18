@@ -7,8 +7,32 @@ body {
     background-color: #2d404b;
 }
 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
 
-@media only screen and (min-width: 920px) {
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+@media only screen and (min-width: 991px) {
     .navInput {
         width: 410px;
     }
@@ -18,7 +42,7 @@ body {
     }
 }
 
-@media only screen and (max-width: 920px) {
+@media only screen and (max-width: 991px) {
     .navInput {
         width: 100%;
     }
@@ -26,9 +50,5 @@ body {
     .navItems {
         margin-right: -20px;
         padding-top: 10px;
-    }
-
-    #ticketNumInput {
-        width: 75px;
     }
 }

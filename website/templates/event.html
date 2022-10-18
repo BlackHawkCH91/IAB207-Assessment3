@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../static/css/event.css">
     <script src="../static/js/EventRating.js"></script>
     <script src="../static/js/TicketPrice.js"></script>
+    <script src="../static/js/UpdateReview.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -103,23 +104,23 @@
                 <div class="p-1"></div>
                 <div id="ratingDiv">
                     <input type="radio" name="starRating" value="1" id="star1" class="ratingRadio" onchange="rating()">
-                    <label for="star1">
+                    <label for="star1" class="ratingLabel">
                         <span class="fa fa-star rating"></span>
                     </label>
                     <input type="radio" name="starRating" value="2" id="star2" class="ratingRadio" onchange="rating()">
-                    <label for="star2">
+                    <label for="star2" class="ratingLabel">
                         <span class="fa fa-star rating"></span>
                     </label>
                     <input type="radio" name="starRating" value="3" id="star3" class="ratingRadio" onchange="rating()">
-                    <label for="star3">
+                    <label for="star3" class="ratingLabel">
                         <span class="fa fa-star rating"></span>
                     </label>
                     <input type="radio" name="starRating" value="4" id="star4" class="ratingRadio" onchange="rating()">
-                    <label for="star4">
+                    <label for="star4" class="ratingLabel">
                         <span class="fa fa-star rating"></span>
                     </label>
                     <input type="radio" name="starRating" value="5" id="star5" class="ratingRadio" onchange="rating()">
-                    <label for="star5">
+                    <label for="star5" class="ratingLabel">
                         <span class="fa fa-star rating"></span>
                     </label>
                 </div>
@@ -128,6 +129,58 @@
                 <div class="p-2"></div>
                 <button type="submit" class="btn btn-success">Post</button>
             </form>
+        </div>
+
+        <div class="p-2"></div>
+        <div class="p-3 review">
+            <div id="review">
+                <h2>Amazing show</h2>
+                <p>Christian Hensman - 3 weeks ago</p>
+                <div id="ratingDiv">
+                    <span class="fa fa-star rating checked"></span>
+                    <span class="fa fa-star rating checked"></span>
+                    <span class="fa fa-star rating checked"></span>
+                    <span class="fa fa-star rating checked"></span>
+                    <span class="fa fa-star rating checked"></span>
+                </div>
+                <div class="p-2"></div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At inventore rem sunt doloribus vitae adipisci quis nisi! Libero, assumenda hic, tempore nulla exercitationem nostrum eius repellat minima tempora fuga odit.</p>
+                <button type="button" class="btn btn-success" onclick="EditReview(1)">Edit</button>
+            </div>
+            <div id="edit" style="display: none;">
+                <form>
+                    <input type="text" class="form-control" placeholder="Review title" value="Amazing show">
+                    <div class="p-1"></div>
+                    <div id="ratingDiv2">
+                        <input type="radio" name="starRating2" value="1" id="star6" class="ratingRadio2" onchange="rating2()">
+                        <label for="star6" class="ratingLabel2">
+                            <span class="fa fa-star rating"></span>
+                        </label>
+                        <input type="radio" name="starRating2" value="2" id="star7" class="ratingRadio2" onchange="rating2()">
+                        <label for="star7" class="ratingLabel2">
+                            <span class="fa fa-star rating"></span>
+                        </label>
+                        <input type="radio" name="starRating2" value="3" id="star8" class="ratingRadio2" onchange="rating2()">
+                        <label for="star8" class="ratingLabel2">
+                            <span class="fa fa-star rating"></span>
+                        </label>
+                        <input type="radio" name="starRating2" value="4" id="star9" class="ratingRadio2" onchange="rating2()">
+                        <label for="star9" class="ratingLabel2">
+                            <span class="fa fa-star rating"></span>
+                        </label>
+                        <input type="radio" name="starRating2" value="5" id="star10" class="ratingRadio2" onchange="rating2()" checked>
+                        <label for="star10" class="ratingLabel2">
+                            <span class="fa fa-star rating"></span>
+                        </label>
+                    </div>
+                    <script>rating2()</script>
+                    <div class="p-2"></div>
+                    <textarea class="form-control" rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. At inventore rem sunt doloribus vitae adipisci quis nisi! Libero, assumenda hic, tempore nulla exercitationem nostrum eius repellat minima tempora fuga odit.</textarea>
+                    <div class="p-2"></div>
+                    <button type="submit" class="btn btn-success" onclick="EditReview(0)">Update</button>
+                    <button type="button" class="btn btn-danger" onclick="EditReview(0)">Discard</button>
+                </form>
+            </div>
         </div>
 
         {% for i in range(4) %}

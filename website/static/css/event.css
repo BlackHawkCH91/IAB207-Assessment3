@@ -53,6 +53,10 @@
     display: none;
 }
 
+.ratingRadio2 {
+    display: none;
+}
+
 .review {
     background-color: white;
     box-shadow: 0px 3px 7px #636363;
