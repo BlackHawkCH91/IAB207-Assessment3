@@ -33,6 +33,8 @@ def login():
             return redirect(url_for('main.index'))
         else:
             flash(error)
+
+        return redirect(url_for('main.index'))
     return render_template('user.html', form=login_form, heading='Login')
 
 # Register route
