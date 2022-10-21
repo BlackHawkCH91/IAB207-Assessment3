@@ -31,6 +31,9 @@
                     {% if current_user.is_authenticated %}
                         <ul class="navbar-nav mr-auto" style="margin-left: -32px;">
                             <ul class="nav-item">
+                                <a class="nav-link" href="{{ url_for('event.update') }}">My Events</a>
+                            </ul>
+                            <ul class="nav-item">
                                 <a class="nav-link" href="{{ url_for('event.create') }}">Create an event</a>
                             </ul>
                             <ul class="nav-item">

@@ -1,5 +1,3 @@
-from re import search
-from urllib import request
 from flask import Blueprint, render_template, request
 from .models import Events, Catergory 
 bp = Blueprint('main', __name__)

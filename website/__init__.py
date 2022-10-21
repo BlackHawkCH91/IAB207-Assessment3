@@ -36,8 +36,8 @@ def create_app():
     # Create loader function that takes a user ID and returns a User
     from .models import Users # importing here to avoid circular references
     @login_manager.user_loader
-    def load_user(user_id):
-        return Users.query.get(int(user_id))
+    def load_user(UserId):
+        return Users.query.get(int(UserId))
 
     # Handle 404 error
     @app.errorhandler(404) 

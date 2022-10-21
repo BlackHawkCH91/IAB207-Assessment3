@@ -24,13 +24,15 @@ def create():
     db_file_path=check_upload_file(form)
     event=Events(EventName=form.event_name.data,description=form.description.data, 
     Image=db_file_path,Location=form.location.data, StartDate=form.start_time.data,
-     EndDate=form.end_time.data, MaxTickets=form.max_tickets.data, Catergory_id=form.Catergory_id.data, Status_id=form.Status_id.data )
+     EndDate=form.end_time.data, MaxTickets=form.max_tickets.data,
+     Catergory_id=form.Catergory_id.data, Status_id=form.Status_id.data,
+     UserId=current_user.UserId)
     db.session.add(event)
     db.session.commit()
     print('Successfully created new sports event', 'success')
     #redirect
     return redirect(url_for('event.create'))
-  return render_template('eventCreation.html', form=form)
+  return render_template('eventCreation.html', form=form, current_user = current_user)
 
 def check_upload_file(form):
   #get file data from form  
@@ -46,7 +48,8 @@ def check_upload_file(form):
 @login_required
 def review(EventId):  
     form = ReviewForm()  
-    event_obj = Events.query.filter_by(EventId=EventId).first()  
+    event_obj = Events.query.filter_by(EventId=EventId).first() 
+    print(current_user); 
     if form.validate_on_submit():  
       #read the comment from the form
       review = Reviews(title=form.title.data,
@@ -58,3 +61,16 @@ def review(EventId):
       db.session.commit() 
       print('Your review has been added', 'success') 
     return redirect(url_for('events.event', EventId=EventId))
+
+@bp.route('/update', methods = ['GET', 'POST'])  
+@login_required
+def update():  
+    events = Events.query.filter_by(UserId = current_user.UserId)
+    return render_template("myEvents.html", events = events)
+ 
+@bp.route('/update/<EventId>', methods = ['GET', 'POST'])  
+@login_required
+def updateEvent(EventId):  
+    event_obj = Events.query.filter_by(EventId=EventId).first()
+    
+    return render_template('UpdateEvent.html', event_obj = event_obj)

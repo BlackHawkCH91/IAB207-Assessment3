@@ -1,4 +1,3 @@
-from enum import unique
 from . import db
 from datetime import datetime
 from flask_login import UserMixin
@@ -35,13 +34,14 @@ class Events(db.Model):
     Status_id = db.Column(db.Integer)
     Catergory_id = db.Column(db.Integer)
     MaxTickets = db.Column(db.Integer)
-    
+    UserId = db.Column(db.Integer)
 	#relations
     reviews = db.relationship('Reviews', backref='event')
     bookings = db.relationship('Bookings', backref='event')
     #Foriegn Key
     Catergory_id = db.Column(db.Integer, db.ForeignKey('catergories.CatergoryId'))
     Status_id = db.Column(db.Integer, db.ForeignKey('eventStatus.EventStatusId'))
+    UserId = db.Column(db.Integer, db.ForeignKey('users.UserId'))
     
     def __repr__(self): #print
         return "<Event: {}>".format(self.name)
