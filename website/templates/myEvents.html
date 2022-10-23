@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <script src="../static/js/IndexResponsive.js"></script>
+{% endblock %}
+
+{% block content %}
+
+            {% for event in events %}
+                <section id="firstEventItem">
+                    <a href="{{url_for('event.updateEvent', EventId=event.EventId)}}" class="EventLink">
+                        <div class="eventImgContainer">
+                            <img class="eventImg" src="{{event.Image}}" alt="{{event.name}}">
+                        </div>
+
+                        <div class="eventItem p-3">
+                            <h2>{{event.EventName}} - {{event.Status_id}}</h2>
+                            <p class="eventDateTime">Starting: {{event.StartDate}}</p>
+                            <p class="eventDateTime">Ending: {{event.EndDate}}</p>
+                            <p style="font-weight: bold;">Sport: {{event.Catergory_id}}</p>
+                            <div class="eventDescription">
+                                <p>{{event.description}}</p>
+                            </div>
+                        </div>
+                        <p class="eventTickets">Tickets: {{event.MaxTickets}}</p>
+                    </a>
+                </section>
+            {% endfor %} 
+        </div>
+    </div>
+{% endblock %}

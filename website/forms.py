@@ -51,4 +51,5 @@ class EventForm(FlaskForm):
   end_time = DateTimeField('End Time', validators=[InputRequired()], format='%Y-%m-%d %H:%M:%S', description="YYYY-MM-DD HH:MM:SS") # Must enter end time
   max_tickets = StringField('Max Ticket Number', validators=[InputRequired()]) # Must enter max tickets
   Status_id = SelectField(u'Select status', choices=[(1, 'Upcoming'), (2, 'Inactive'), (3, 'Booked'), (4, 'Cancelled')], validators=[InputRequired()])
-  submit = SubmitField("Create")
+  submit = SubmitField("Submit")
+

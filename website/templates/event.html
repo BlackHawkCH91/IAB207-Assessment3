@@ -22,10 +22,12 @@
     <div class="container-fluid" id="mainBox">
 
         <div id="imgSpacer"></div>
-        <h1>{{event.EventName}} - {{event.Status_id}}</h1>
+        <h1>{{event.EventName}} - {{status.Status}}</h1>
         <div class="p-2"></div>
         <div class="container-fluid eventInfo">
             <p class="eventDateTime">{{event.StartDate}} - {{event.EndDate}}</p>
+            <div class="p-2"></div>
+            <p>{{catergory.CatergoryName}}</p>
             <div class="p-2"></div>
             <p>{{event.description}}</p>
             <div class="p-2"></div>

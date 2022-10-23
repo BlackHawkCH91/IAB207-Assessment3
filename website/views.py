@@ -1,7 +1,5 @@
-from re import search
-from urllib import request
 from flask import Blueprint, render_template, request
-from .models import Events, Catergory 
+from .models import Events, Catergory, EventStatus
 bp = Blueprint('main', __name__)
 
 
@@ -13,9 +11,11 @@ def index():
         eventName = "%" + request.args["search"] + "%"
         events = Events.query.filter(Events.EventName.like(eventName)).all()
         return render_template("index.html", events = events)
-
+    
     events = Events.query.all()
-    return render_template("index.html", events = events)
+    status = EventStatus.query.all()
+    catergory = Catergory.query.all()
+    return render_template("index.html", events = events, catergory = catergory, status = status) # currently incorrect
 
 @bp.route('/UserBookingHistory')
 def userBookingHistory():
