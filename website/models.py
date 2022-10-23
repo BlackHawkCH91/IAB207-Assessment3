@@ -50,17 +50,18 @@ class EventStatus(db.Model):
     EventStatusId = db.Column(db.Integer, primary_key=True)
     Status = db.Column(db.String(80))
     
-    Event = db.relationship('Events', backref='status')
+    Event = db.relationship('Events', backref='Status')
     
     def __repr__(self): #print
-        return "<Event: {}>".format(self.Status)
+        return "{}".format(self.Status)
 class Catergory(db.Model):
     __tablename__ = 'catergories'
     CatergoryId = db.Column(db.Integer, primary_key=True)
     CatergoryName = db.Column(db.String(100))
 
+    Event = db.relationship('Events', backref='CatergoryName')
     def __repr__(self):
-        return "<Catergory: {}>".format(self.CatergoryName)
+        return "{}".format(self.CatergoryName)
 class Reviews(db.Model):
     __tablename__ = 'reviews'
     ReviewId = db.Column(db.Integer, primary_key=True)

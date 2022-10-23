@@ -1,0 +1,58 @@
+#mainArea {
+    width: 70%;
+}
+
+.booking {
+    background-color: #FFFFFF;
+    box-shadow: 0px 3px 7px #636363;
+    height: 200px;
+    overflow: hidden;
+}
+
+.bookingImage {
+    display: block;
+    margin-top: -20px;
+    height: 325px;
+}
+
+#imgSpacer {
+    display: none;
+}
+.EventLink {
+    text-decoration: none;
+    color: black;
+}
+
+.EventLink:link, .EventLink:hover, .EventLink:active {
+    text-decoration: none;
+    color: black;
+}
+
+@media only screen and (max-width: 1200px) {
+    #mainArea {
+        width: 95%;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    #mainArea {
+        width: 95%;
+    }
+
+    .booking {
+        height: 430px;
+    }
+
+    .bookingImage {
+        height: 350px;
+        margin-left: -20px;
+    }
+
+    .booking {
+        text-align: center;
+    }
+
+    #imgSpacer {
+        display: block;
+    }
+}

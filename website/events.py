@@ -13,10 +13,8 @@ bp = Blueprint('event',__name__, url_prefix='/events')
 @bp.route('/<id>')
 def show(id):
     event = Events.query.filter_by(EventId=id).first()
-    status = EventStatus.query.filter_by(EventStatusId=event.Status_id).first()
-    catergory = Catergory.query.filter_by(CatergoryId=event.Catergory_id).first()
     cform = ReviewForm()
-    return render_template('/event.html', event=event,status = status, catergory = catergory, form=cform)
+    return render_template('/event.html', event=event, form=cform)
 
 @bp.route('/eventcreation', methods = ['GET', 'POST'])
 @login_required

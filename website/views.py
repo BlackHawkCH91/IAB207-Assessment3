@@ -13,9 +13,8 @@ def index():
         return render_template("index.html", events = events)
     
     events = Events.query.all()
-    status = EventStatus.query.all()
-    catergory = Catergory.query.all()
-    return render_template("index.html", events = events, catergory = catergory, status = status) # currently incorrect
+
+    return render_template("index.html", events = events) # currently incorrect
 
 @bp.route('/UserBookingHistory')
 def userBookingHistory():

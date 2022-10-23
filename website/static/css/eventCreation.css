@@ -14,14 +14,14 @@
     }
 }
 
-@media only screen and (max-width: 1112px) {
+@media only screen and (max-width: 1303px) {
     .eventForm {
         width: 91%;
     }
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 767px) {
     #ticketNumInput {
-        width: 75px;
+        width: 150px;
     }
 }
