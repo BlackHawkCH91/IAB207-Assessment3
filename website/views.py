@@ -13,10 +13,9 @@ def index():
         return render_template("index.html", events = events)
     
     events = Events.query.all()
-    for event in events:
-        status = EventStatus.query.filter_by(EventStatusId=event.Status_id).first()
-        catergory = Catergory.query.filter_by(CatergoryId=events.Catergory_id).first()
-    return render_template("index.html", events = events, status = status, catergory = catergory) # currently incorrect
+    status = EventStatus.query.all()
+    catergory = Catergory.query.all()
+    return render_template("index.html", events = events, catergory = catergory, status = status) # currently incorrect
 
 @bp.route('/UserBookingHistory')
 def userBookingHistory():

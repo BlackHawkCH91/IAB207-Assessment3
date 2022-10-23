@@ -1,11 +1,12 @@
 from unicodedata import category
-from flask import Blueprint, render_template, session, request, redirect, url_for
+from flask import Blueprint, render_template, session, request, redirect, url_for, flash
 from .models import *
 from .forms import EventForm, ReviewForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
 from flask_login import login_required, current_user
+from datetime import datetime
 
 bp = Blueprint('event',__name__, url_prefix='/events')
 
@@ -72,8 +73,40 @@ def update():
     return render_template("myEvents.html", events = events)
  
 @bp.route('/update/<EventId>', methods = ['GET', 'POST'])  
+#update this to if userid == event.userid then continue, any one logged in can access atm
+#if they type in the url
 @login_required
 def updateEvent(EventId):  
-    event_obj = Events.query.filter_by(EventId=EventId).first()
+    form = EventForm()
+    #event = Events.query.get(EventId)
+    event = Events.query.filter_by(EventId=EventId).first()
+    #prefill form with current values
+    # this if is required otherwise the variables dont update or i could split the methods like
+    # sheru does
+    if request.method == "GET":
+      form.event_name.data = event.EventName
+      form.description.data = event.description
+      form.location.data = event.Location
+      form.Catergory_id.data = event.Catergory_id
+      form.start_time.data = event.StartDate
+      form.end_time.data = event.EndDate
+      form.Status_id.data = event.Status_id
+      form.max_tickets.data = event.MaxTickets
+    #if valid submit form and update db
+    if request.method == "POST" and form.validate_on_submit:
+      event.EventName = form.event_name.data
+      event.Location = form.location.data
+      event.description = form.description.data
+      event.StartDate = form.start_time.data
+      event.EndDate = form.end_time.data
+      event.MaxTickets = form.max_tickets.data
+      event.Status_id = form.Status_id.data
+      event.Catergory_id = form.Catergory_id.data
+      #try commit if db error returns to values before changed
+      try:
+        db.session.commit()
+        return render_template('UpdateEvent.html',EventId = EventId, event = event, form = form)
+      except:
+        return render_template('UpdateEvent.html',EventId = EventId, event = event, form = form)
     
-    return render_template('UpdateEvent.html', event_obj = event_obj)
+    return render_template('UpdateEvent.html',EventId = EventId, event = event, form = form)

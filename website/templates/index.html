@@ -1,3 +1,4 @@
+from .models import Events, Catergory, EventStatus
 {% extends 'base.html' %}
 
 {% block head %}
@@ -108,7 +109,7 @@
                             <h2>{{event.EventName}} - {{status.Status}}</h2>
                             <p class="eventDateTime">Starting: {{event.StartDate}}</p>
                             <p class="eventDateTime">Ending: {{event.EndDate}}</p>
-                            <p style="font-weight: bold;">Sport: {{catergory.CatergoryName}}</p>
+                            <p style="font-weight: bold;">Sport: {{event.CatergoryName}}</p>
                             <div class="eventDescription">
                                 <p>{{event.description}}</p>
                             </div>

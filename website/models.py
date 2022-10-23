@@ -44,7 +44,7 @@ class Events(db.Model):
     UserId = db.Column(db.Integer, db.ForeignKey('users.UserId'))
     
     def __repr__(self): #print
-        return "<Event: {}>".format(self.name)
+        return "<Event: {}>".format(self.EventName)
 class EventStatus(db.Model):
     __tablename__ = 'eventStatus'
     EventStatusId = db.Column(db.Integer, primary_key=True)
@@ -53,14 +53,14 @@ class EventStatus(db.Model):
     Event = db.relationship('Events', backref='status')
     
     def __repr__(self): #print
-        return "<Event: {}>".format(self.name)
+        return "<Event: {}>".format(self.Status)
 class Catergory(db.Model):
     __tablename__ = 'catergories'
     CatergoryId = db.Column(db.Integer, primary_key=True)
     CatergoryName = db.Column(db.String(100))
 
     def __repr__(self):
-        return "<Catergory: {}>".format(self.text)
+        return "<Catergory: {}>".format(self.CatergoryName)
 class Reviews(db.Model):
     __tablename__ = 'reviews'
     ReviewId = db.Column(db.Integer, primary_key=True)
@@ -75,7 +75,7 @@ class Reviews(db.Model):
     Event_id = db.Column(db.Integer, db.ForeignKey('events.EventId'))
     
     def __repr__(self):
-        return "<Review: {}>".format(self.text)
+        return "<Review: {}>".format(self.Content)
     
 class Bookings(db.Model):
     __tablename__ = 'bookings'
@@ -89,4 +89,4 @@ class Bookings(db.Model):
     Event_id = db.Column(db.Integer, db.ForeignKey('events.EventId'))
     
     def __repr__(self):
-        return "<Booking: {}>".format(self.text)
+        return "<Booking: {}>".format(self.Content)
