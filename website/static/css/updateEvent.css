@@ -1,27 +1,49 @@
-.eventForm {
+#mainArea {
     width: 70%;
 }
 
-@media only screen and (min-width: 767px) {
-    .lineBreaks {
-        display: none;
+.booking {
+    background-color: #FFFFFF;
+    box-shadow: 0px 3px 7px #636363;
+    height: 200px;
+    overflow: hidden;
+}
+
+.bookingImage {
+    display: block;
+    margin-top: -20px;
+    height: 325px;
+}
+
+#imgSpacer {
+    display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+    #mainArea {
+        width: 95%;
     }
 }
 
-@media only screen and (max-width: 767px) {
-    .lineBreaks {
+@media only screen and (max-width: 575px) {
+    #mainArea {
+        width: 95%;
+    }
+
+    .booking {
+        height: 430px;
+    }
+
+    .bookingImage {
+        height: 350px;
+        margin-left: -20px;
+    }
+
+    .booking {
+        text-align: center;
+    }
+
+    #imgSpacer {
         display: block;
-    }
-}
-
-@media only screen and (max-width: 1303px) {
-    .eventForm {
-        width: 91%;
-    }
-}
-
-@media only screen and (max-width: 767px) {
-    #ticketNumInput {
-        width: 150px;
     }
 }
