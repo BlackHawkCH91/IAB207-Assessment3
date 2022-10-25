@@ -10,7 +10,7 @@ ctx=app.app_context()
 ctx.push()
 db.create_all()
 
-categoryList = ["Basketnall", "Cricket", "Gymnastics", "Netball", "Football", "Rugby", "Swimming", "Tennis"]
+categoryList = ["Basketball", "Cricket", "Gymnastics", "Netball", "Football", "Rugby", "Swimming", "Tennis"]
 EventStatuses = ["Upcoming", "Inactive", "Booked", "Cancelled"]
 
 counter = 1

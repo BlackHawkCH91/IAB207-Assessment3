@@ -1,4 +1,3 @@
-from unicodedata import category
 from flask import Blueprint, render_template, session, request, redirect, url_for, flash
 from .models import *
 from .forms import EventForm, ReviewForm
@@ -74,24 +73,21 @@ def update():
 @login_required
 def updateEvent(EventId):  
     form = EventForm()
-    #event = Events.query.get(EventId)
     event = Events.query.filter_by(EventId=EventId).first()
-    #prefill form with current values
-    # this if is required otherwise the variables dont update or i could split the methods like
-
+    deleteEvent = request.form.get('delete')
     #check user is creator else deny and return to myevents page
-    if event.UserId == current_user.UserId:
-      if request.method == "GET":
-        form.event_name.data = event.EventName
-        form.description.data = event.description
-        form.location.data = event.Location
-        form.Catergory_id.data = event.Catergory_id
-        form.start_time.data = event.StartDate
-        form.end_time.data = event.EndDate
-        form.Status_id.data = event.Status_id
-        form.max_tickets.data = event.MaxTickets
+    if current_user.UserId != event.UserId:
+      flash('unauthorised access')
+      return redirect(url_for('event.update'))
+    #this if is required otherwise the variables dont update or i could split the methods like
+    if request.method == "POST":
+      #if delete pressed delete event
+      if deleteEvent is not None:
+        db.session.delete(event)
+        db.session.commit()
+        return redirect(url_for('event.update'))
       #if valid submit form and update db
-      if request.method == "POST" and form.validate_on_submit:
+      if form.validate_on_submit:
         event.EventName = form.event_name.data
         event.Location = form.location.data
         event.description = form.description.data
@@ -100,12 +96,23 @@ def updateEvent(EventId):
         event.MaxTickets = form.max_tickets.data
         event.Status_id = form.Status_id.data
         event.Catergory_id = form.Catergory_id.data
-        #try commit if db error returns to values before changed
+          #try commit if db error returns to values before changed
         try:
           db.session.commit()
-          return render_template('UpdateEvent.html',EventId = EventId, event = event, form = form)
+          return redirect(url_for('event.update'))
         except:
-          return render_template('UpdateEvent.html',EventId = EventId, event = event, form = form)
+          flash('error resubmit')
+          return render_template('/updateEvent.html',EventId = EventId, event = event, form = form)
+        
+    elif request.method == "GET":
+       #prefill form with current values
+      form.event_name.data = event.EventName
+      form.description.data = event.description
+      form.location.data = event.Location  # is there an easier way to do this so it prefills properly?
+      form.Catergory_id.data = event.Catergory_id
+      form.start_time.data = event.StartDate
+      form.end_time.data = event.EndDate
+      form.Status_id.data = event.Status_id
+      form.max_tickets.data = event.MaxTickets
+      return render_template('/updateEvent.html',EventId = EventId, event = event, form = form)
     
-    flash("Access denied")
-    return render_template('myEvents.html')

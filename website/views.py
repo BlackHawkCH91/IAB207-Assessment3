@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-from .models import Events, Catergory, EventStatus
+from .models import Events
 bp = Blueprint('main', __name__)
 
 
@@ -19,10 +19,6 @@ def index():
 @bp.route('/UserBookingHistory')
 def userBookingHistory():
     return render_template("userBookingHistory.html")
-
-@bp.route('/UpdateEvent')
-def updateEvent():
-    return render_template("updateEvent.html")
 
 @bp.route('/UserSettings')
 def userSettings():
