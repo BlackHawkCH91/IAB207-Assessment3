@@ -12,5 +12,9 @@
 {% block content %}
 <div class="container-fluid" id="mainArea">
     {{wtf.render_form(form)}}
+    <br>
+    <form method="POST">
+    <button type="submit" name='delete'class="btn btn-danger">Delete event</button>
+    </form>
 </div>
 {% endblock %}
