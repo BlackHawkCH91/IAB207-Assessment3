@@ -1,4 +1,3 @@
-from unicodedata import category
 from flask import Blueprint, render_template, session, request, redirect, url_for, flash
 from .models import *
 from .forms import EventForm, ReviewForm
@@ -103,17 +102,17 @@ def updateEvent(EventId):
           return redirect(url_for('event.update'))
         except:
           flash('error resubmit')
-          return render_template('UpdateEvent.html',EventId = EventId, event = event, form = form)
-        
+          return render_template('/updateEvent.html',EventId = EventId, event = event, form = form)
         
     elif request.method == "GET":
        #prefill form with current values
       form.event_name.data = event.EventName
       form.description.data = event.description
-      form.location.data = event.Location
+      form.location.data = event.Location  # is there an easier way to do this so it prefills properly?
       form.Catergory_id.data = event.Catergory_id
       form.start_time.data = event.StartDate
       form.end_time.data = event.EndDate
       form.Status_id.data = event.Status_id
       form.max_tickets.data = event.MaxTickets
-      return render_template('UpdateEvent.html',EventId = EventId, event = event, form = form)
+      return render_template('/updateEvent.html',EventId = EventId, event = event, form = form)
+    
