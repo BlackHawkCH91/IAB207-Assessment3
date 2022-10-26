@@ -108,6 +108,7 @@ def updateEvent(EventId):
        #prefill form with current values
       form.event_name.data = event.EventName
       form.description.data = event.description
+      form.image.data = event.Image
       form.location.data = event.Location  # is there an easier way to do this so it prefills properly?
       form.Catergory_id.data = event.Catergory_id
       form.start_time.data = event.StartDate
