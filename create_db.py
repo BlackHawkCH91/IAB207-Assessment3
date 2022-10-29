@@ -1,10 +1,13 @@
 #running this file will recreate db
+from genericpath import isfile
 from unicodedata import category
 from website import db, create_app
 from website.models import Catergory, EventStatus
 import os
 
-os.remove("website/Events.sqlite")
+if os.path.isfile("website/Events.sqlite"):
+    os.remove("website/Events.sqlite")
+
 app=create_app()
 ctx=app.app_context()
 ctx.push()

@@ -1,8 +1,9 @@
 from datetime import datetime
 from logging import PlaceHolder
+from tkinter import Widget
 from xmlrpc.client import DateTime
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, DateTimeField, SelectField
+from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, SelectField, IntegerField, DecimalField, DateTimeLocalField
 from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 
@@ -45,11 +46,13 @@ class EventForm(FlaskForm):
     FileRequired(message='Image cannot be empty'),
     FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')]) # Only accepts correct file types
   location = StringField('Location', validators=[InputRequired()]) # Must enter location
+  city = StringField('City', validators=[InputRequired()]) # Must enter location
   Catergory_id = SelectField(u'Select Sport', choices=[(1, 'Basketball'), (2, 'Cricket'), (3, 'Gymnastics'), (4, 'Netball'),
   (5, 'Football'), (6, 'Rugby'), (7, 'Swimming'), (8, 'Tennis')], validators=[InputRequired()])
-  start_time = DateTimeField('Start Time', validators=[InputRequired()], format='%Y-%m-%d %H:%M:%S', description="YYYY-MM-DD HH:MM:SS") # Must enter start time
-  end_time = DateTimeField('End Time', validators=[InputRequired()], format='%Y-%m-%d %H:%M:%S', description="YYYY-MM-DD HH:MM:SS") # Must enter end time
-  max_tickets = StringField('Max Ticket Number', validators=[InputRequired()]) # Must enter max tickets
+  start_time = DateTimeLocalField('Start Time', validators=[InputRequired()], format='%Y-%m-%d %H:%M:%S', description="YYYY-MM-DD HH:MM:SS") # Must enter start time
+  end_time = DateTimeLocalField('End Time', validators=[InputRequired()], format='%Y-%m-%d %H:%M:%S', description="YYYY-MM-DD HH:MM:SS") # Must enter end time
+  max_tickets = IntegerField('Max Ticket Number', validators=[InputRequired()]) # Must enter max tickets
+  ticket_price = DecimalField('Ticket Price', validators=[InputRequired()]) # Must enter max tickets
   Status_id = SelectField(u'Select status', choices=[(1, 'Upcoming'), (2, 'Inactive'), (3, 'Booked'), (4, 'Cancelled')], validators=[InputRequired()])
   submit = SubmitField("Submit")
 
