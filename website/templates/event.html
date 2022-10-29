@@ -12,6 +12,8 @@
     <script src="../static/js/UpdateReview.js"></script>
 {% endblock %}
 
+{% import "bootstrap/form.html" as wtf %}
+
 {% block content %}
     <div class="p-4" id="navbarSpacer"></div>
 
@@ -101,35 +103,30 @@
         <div class="p-3 review">
             <h2>Post a review:</h2>
             <div class="p-2"></div>
-            <form>
-                <input type="text" class="form-control" placeholder="Review title">
-                <div class="p-1"></div>
-                <div id="ratingDiv">
-                    <input type="radio" name="starRating" value="1" id="star1" class="ratingRadio" onchange="rating()">
-                    <label for="star1" class="ratingLabel">
-                        <span class="fa fa-star rating"></span>
-                    </label>
-                    <input type="radio" name="starRating" value="2" id="star2" class="ratingRadio" onchange="rating()">
-                    <label for="star2" class="ratingLabel">
-                        <span class="fa fa-star rating"></span>
-                    </label>
-                    <input type="radio" name="starRating" value="3" id="star3" class="ratingRadio" onchange="rating()">
-                    <label for="star3" class="ratingLabel">
-                        <span class="fa fa-star rating"></span>
-                    </label>
-                    <input type="radio" name="starRating" value="4" id="star4" class="ratingRadio" onchange="rating()">
-                    <label for="star4" class="ratingLabel">
-                        <span class="fa fa-star rating"></span>
-                    </label>
-                    <input type="radio" name="starRating" value="5" id="star5" class="ratingRadio" onchange="rating()">
-                    <label for="star5" class="ratingLabel">
-                        <span class="fa fa-star rating"></span>
-                    </label>
+            <form method="POST" enctype="multipart/form-data">
+                
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="p-1 lineBreaks"></div>
+                        <h4>Review Title:</h4>
+                        {{form.title}}
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="p-1"></div>
+                        <div id="ratingDiv">
+                            <div class="p-1 lineBreaks"></div>
+                            <h4>Rating:</h4>
+                            {{form.rating}}
+                        </div>
+                    </div>
                 </div>
+
                 <div class="p-2"></div>
-                <textarea class="form-control" rows="5"></textarea>
+                <div class="p-1 lineBreaks"></div>
+                <h4>Write your review:</h4>
+                {{form.comment}}
                 <div class="p-2"></div>
-                <button type="submit" class="btn btn-success">Post</button>
+                {{form.submit}}
             </form>
         </div>
 
