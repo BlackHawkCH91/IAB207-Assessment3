@@ -10,7 +10,6 @@ from flask_wtf.file import FileRequired, FileField, FileAllowed
 # Define accepted file types
 ALLOWED_FILE = {'PNG','JPG','png','jpg'}
 
-
 #creates the login information
 class LoginForm(FlaskForm):
     user_name=StringField("User Name", validators=[InputRequired('Enter user name')])
@@ -34,9 +33,9 @@ class RegisterForm(FlaskForm):
 # Creates the review form
 class ReviewForm(FlaskForm):
   title = StringField('Review Title', [InputRequired()]) # Must enter title
-  rating = StringField('Rating out of 5', [InputRequired()]) # Must enter rating
+  rating = IntegerField('Rating out of 5', [InputRequired()]) # Must enter rating
   comment = TextAreaField('Review comment', validators=[InputRequired()]) # Must enter review comment
-  submit = SubmitField('Create')
+  submit = SubmitField('Post')
 
 #Creates event form
 class EventForm(FlaskForm):
@@ -56,3 +55,7 @@ class EventForm(FlaskForm):
   Status_id = SelectField(u'Select status', choices=[(1, 'Upcoming'), (2, 'Inactive'), (3, 'Booked'), (4, 'Cancelled')], validators=[InputRequired()])
   submit = SubmitField("Submit")
 
+# Creates Booking Form
+class BookingForm(FlaskForm):
+  ticket_num = IntegerField('Number of Tickets', validators=[InputRequired()]) #Must enter number of tickets
+  submit = SubmitField("Submit")

@@ -12,6 +12,8 @@
     <script src="../static/js/UpdateReview.js"></script>
 {% endblock %}
 
+{% import "bootstrap/form.html" as wtf %}
+
 {% block content %}
     <div class="p-4" id="navbarSpacer"></div>
 
@@ -96,44 +98,74 @@
             </div>
         </div>
 
-        <div class="p-4"></div>
-
+    <!-- Create and post reviews -->
         <div class="p-3 review">
             <h2>Post a review:</h2>
             <div class="p-2"></div>
-            <form>
-                <input type="text" class="form-control" placeholder="Review title">
-                <div class="p-1"></div>
-                <div id="ratingDiv">
-                    <input type="radio" name="starRating" value="1" id="star1" class="ratingRadio" onchange="rating()">
-                    <label for="star1" class="ratingLabel">
-                        <span class="fa fa-star rating"></span>
-                    </label>
-                    <input type="radio" name="starRating" value="2" id="star2" class="ratingRadio" onchange="rating()">
-                    <label for="star2" class="ratingLabel">
-                        <span class="fa fa-star rating"></span>
-                    </label>
-                    <input type="radio" name="starRating" value="3" id="star3" class="ratingRadio" onchange="rating()">
-                    <label for="star3" class="ratingLabel">
-                        <span class="fa fa-star rating"></span>
-                    </label>
-                    <input type="radio" name="starRating" value="4" id="star4" class="ratingRadio" onchange="rating()">
-                    <label for="star4" class="ratingLabel">
-                        <span class="fa fa-star rating"></span>
-                    </label>
-                    <input type="radio" name="starRating" value="5" id="star5" class="ratingRadio" onchange="rating()">
-                    <label for="star5" class="ratingLabel">
-                        <span class="fa fa-star rating"></span>
-                    </label>
+            <form method="post" action>
+                {{ form.csrf_token }}
+                
+                <div class="form-group row">
+                    <div class="col-lg-12">
+                        <h4>Review Title:</h4>
+                        {{ form.title(class_="form-control", placeholder="Review Title") }}
+                    </div>
                 </div>
+
                 <div class="p-2"></div>
-                <textarea class="form-control" rows="5"></textarea>
+                <div class="form-group row">
+                    <div class="col-lg-12">
+                        <h4>Rating:</h4>
+                        {{ form.rating(class_="form-control", placeholder="1 - 5 Star Rating") }}
+                    </div>
+                </div>
+                
                 <div class="p-2"></div>
-                <button type="submit" class="btn btn-success">Post</button>
+                <div class="form-group row">
+                    <div class="col-lg-12">
+                        <h4>Write your review:</h4>
+                        {{ form.comment(class_="form-control", rows=5) }}
+                    </div>
+                </div>
+
+                <div class="p-1 lineBreaks"></div>
+                {{ form.submit(class_="btn btn-success") }}
+
             </form>
         </div>
 
-        <div class="p-2"></div>
+        <div class="p-1 lineBreaks"></div>
+        <div class="p-1 lineBreaks"></div>
+
+    <!-- Display reviews for the event -->  
+        <div class="row">  
+            <div class="col-md-12">  
+                <h2>Reviews</h1>  
+            </div>  
+        </div>  
+      
+        <div class="row border-bottom">  
+            {% for review in event.reviews %}
+
+            <div class="col-md-12">  
+                <div class="p-3 review">
+                    <h2>TEST</h2>
+                    <h2>{{ review.Title }}</h2>
+                    <b>{{ review.User_id }} <span class="ml-2 text-muted">{{ review.CreatedAt }}</span></b>
+                    <p>{{ review.Content }}</p>
+            </div>
+
+            
+        </div>
+        {% endfor %} 
+
+        
+
+    </div>
+
+{% endblock %}
+
+        <!-- <div class="p-2"></div>
         <div class="p-3 review">
             <div id="review">
                 <h2>Amazing show</h2>
@@ -183,24 +215,4 @@
                     <button type="button" class="btn btn-danger" onclick="EditReview(0)">Discard</button>
                 </form>
             </div>
-        </div>
-
-        {% for i in range(4) %}
-            <div class="p-2"></div>
-            <div class="p-3 review">
-                <h2>Amazing show</h2>
-                <p>Christian Hensman - 3 weeks ago</p>
-                <div id="ratingDiv">
-                    <span class="fa fa-star rating checked"></span>
-                    <span class="fa fa-star rating checked"></span>
-                    <span class="fa fa-star rating checked"></span>
-                    <span class="fa fa-star rating checked"></span>
-                    <span class="fa fa-star rating checked"></span>
-                </div>
-                <div class="p-2"></div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At inventore rem sunt doloribus vitae adipisci quis nisi! Libero, assumenda hic, tempore nulla exercitationem nostrum eius repellat minima tempora fuga odit.</p>
-            </div>
-        {% endfor %} 
-
-    </div>
-{% endblock %}
+        </div> -->
