@@ -98,39 +98,65 @@
             </div>
         </div>
 
-        <div class="p-4"></div>
-
+    <!-- Create and post reviews -->
         <div class="p-3 review">
             <h2>Post a review:</h2>
             <div class="p-2"></div>
-            <form method="POST" enctype="multipart/form-data">
+            <form method="post" action>
                 
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="p-1 lineBreaks"></div>
+                <div class="form-group row">
+                    <div class="col-lg-12">
                         <h4>Review Title:</h4>
-                        {{form.title}}
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="p-1"></div>
-                        <div id="ratingDiv">
-                            <div class="p-1 lineBreaks"></div>
-                            <h4>Rating:</h4>
-                            {{form.rating}}
-                        </div>
+                        {{ form.title(class_="form-control", placeholder="Review Title") }}
                     </div>
                 </div>
 
                 <div class="p-2"></div>
-                <div class="p-1 lineBreaks"></div>
-                <h4>Write your review:</h4>
-                {{form.comment}}
+                <div class="form-group row">
+                    <div class="col-lg-12">
+                        <h4>Rating:</h4>
+                        {{ form.rating(class_="form-control", placeholder="1 - 5 Star Rating") }}
+                    </div>
+                </div>
+                
                 <div class="p-2"></div>
-                {{form.submit}}
+                <div class="form-group row">
+                    <div class="col-lg-12">
+                        <h4>Write your review:</h4>
+                        {{ form.comment(class_="form-control", placeholder="1 - 5 Star Rating") }}
+                        {{ form.submit(class_="form-control") }}
+                    </div>
+                </div>
+
             </form>
         </div>
 
-        <div class="p-2"></div>
+    <!-- Display reviews for the event -->  
+        <div class="row">  
+            <div class="col-md-12">  
+                <h2>Reviews</h1>  
+            </div>  
+        </div>  
+      
+        <div class="row border-bottom">  
+            {{wtf.render_form(form,"/events/{0}/review".format(event.id))}}
+            {% for review in event.reviews %}
+
+            <div class="col-md-12">  
+                <div class="p-3 review">
+                    <h2>{{ reviews.Title }}</h2>
+                    <b>{{ reviews.users.FirstName }} <span class="ml-2 text-muted">{{ review.created_at }}</span></b>
+                    <p>{{ reviews.Content }}</p>
+            </div>
+        </div>
+
+        {% endfor %} 
+
+    </div>
+
+{% endblock %}
+
+        <!-- <div class="p-2"></div>
         <div class="p-3 review">
             <div id="review">
                 <h2>Amazing show</h2>
@@ -180,24 +206,4 @@
                     <button type="button" class="btn btn-danger" onclick="EditReview(0)">Discard</button>
                 </form>
             </div>
-        </div>
-
-        {% for i in range(4) %}
-            <div class="p-2"></div>
-            <div class="p-3 review">
-                <h2>Amazing show</h2>
-                <p>Christian Hensman - 3 weeks ago</p>
-                <div id="ratingDiv">
-                    <span class="fa fa-star rating checked"></span>
-                    <span class="fa fa-star rating checked"></span>
-                    <span class="fa fa-star rating checked"></span>
-                    <span class="fa fa-star rating checked"></span>
-                    <span class="fa fa-star rating checked"></span>
-                </div>
-                <div class="p-2"></div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At inventore rem sunt doloribus vitae adipisci quis nisi! Libero, assumenda hic, tempore nulla exercitationem nostrum eius repellat minima tempora fuga odit.</p>
-            </div>
-        {% endfor %} 
-
-    </div>
-{% endblock %}
+        </div> -->
