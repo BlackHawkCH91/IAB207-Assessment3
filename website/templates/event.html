@@ -103,6 +103,7 @@
             <h2>Post a review:</h2>
             <div class="p-2"></div>
             <form method="post" action>
+                {{ form.csrf_token }}
                 
                 <div class="form-group row">
                     <div class="col-lg-12">
@@ -123,13 +124,18 @@
                 <div class="form-group row">
                     <div class="col-lg-12">
                         <h4>Write your review:</h4>
-                        {{ form.comment(class_="form-control", placeholder="1 - 5 Star Rating") }}
-                        {{ form.submit(class_="form-control") }}
+                        {{ form.comment(class_="form-control", rows=5) }}
                     </div>
                 </div>
 
+                <div class="p-1 lineBreaks"></div>
+                {{ form.submit(class_="btn btn-success") }}
+
             </form>
         </div>
+
+        <div class="p-1 lineBreaks"></div>
+        <div class="p-1 lineBreaks"></div>
 
     <!-- Display reviews for the event -->  
         <div class="row">  
@@ -139,18 +145,20 @@
         </div>  
       
         <div class="row border-bottom">  
-            {{wtf.render_form(form,"/events/{0}/review".format(event.id))}}
             {% for review in event.reviews %}
 
             <div class="col-md-12">  
                 <div class="p-3 review">
+                    <h2>TEST</h2>
                     <h2>{{ reviews.Title }}</h2>
-                    <b>{{ reviews.users.FirstName }} <span class="ml-2 text-muted">{{ review.created_at }}</span></b>
+                    <b>{{ reviews.User_id }} <span class="ml-2 text-muted">{{ review.CreatedAt }}</span></b>
                     <p>{{ reviews.Content }}</p>
             </div>
+
+            {% endfor %} 
         </div>
 
-        {% endfor %} 
+        
 
     </div>
 

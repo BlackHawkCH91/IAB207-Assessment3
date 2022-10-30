@@ -9,10 +9,18 @@ from datetime import datetime
 
 bp = Blueprint('event',__name__, url_prefix='/events')
 
-@bp.route('/<id>')
+@bp.route('/<id>', methods = ['GET', 'POST'])
 def show(id):
     event = Events.query.filter_by(EventId=id).first()
     cform = ReviewForm()
+    if cform.validate_on_submit():  
+    #read the comment from the form
+      review = Reviews(Title=cform.title.data,
+                        Rating=cform.rating.data,
+                        Content=cform.comment.data,
+                        User_id=current_user.UserId ) 
+      db.session.add(review) 
+      db.session.commit() 
     return render_template('/event.html', event=event, form=cform)
 
 @bp.route('/eventcreation', methods = ['GET', 'POST'])
