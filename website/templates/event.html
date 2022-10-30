@@ -150,13 +150,14 @@
             <div class="col-md-12">  
                 <div class="p-3 review">
                     <h2>TEST</h2>
-                    <h2>{{ reviews.Title }}</h2>
-                    <b>{{ reviews.User_id }} <span class="ml-2 text-muted">{{ review.CreatedAt }}</span></b>
-                    <p>{{ reviews.Content }}</p>
+                    <h2>{{ review.Title }}</h2>
+                    <b>{{ review.User_id }} <span class="ml-2 text-muted">{{ review.CreatedAt }}</span></b>
+                    <p>{{ review.Content }}</p>
             </div>
 
-            {% endfor %} 
+            
         </div>
+        {% endfor %} 
 
         
 

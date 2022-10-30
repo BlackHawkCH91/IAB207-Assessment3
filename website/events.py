@@ -18,7 +18,8 @@ def show(id):
       review = Reviews(Title=cform.title.data,
                         Rating=cform.rating.data,
                         Content=cform.comment.data,
-                        User_id=current_user.UserId ) 
+                        User_id=current_user.UserId,
+                        Event_id=id) 
       db.session.add(review) 
       db.session.commit() 
     return render_template('/event.html', event=event, form=cform)
