@@ -48,8 +48,8 @@ class EventForm(FlaskForm):
   city = StringField('City', validators=[InputRequired()]) # Must enter location
   Catergory_id = SelectField(u'Select Sport', choices=[(1, 'Basketball'), (2, 'Cricket'), (3, 'Gymnastics'), (4, 'Netball'),
   (5, 'Football'), (6, 'Rugby'), (7, 'Swimming'), (8, 'Tennis')], validators=[InputRequired()])
-  start_time = DateTimeLocalField('Start Time', validators=[InputRequired()], format='%Y-%m-%d %H:%M:%S', description="YYYY-MM-DD HH:MM:SS") # Must enter start time
-  end_time = DateTimeLocalField('End Time', validators=[InputRequired()], format='%Y-%m-%d %H:%M:%S', description="YYYY-MM-DD HH:MM:SS") # Must enter end time
+  start_time = DateTimeLocalField('Start Time', validators=[InputRequired()], format="%Y-%m-%dT%H:%M", description="YYYY-MM-DD HH:MM:SS") # Must enter start time
+  end_time = DateTimeLocalField('End Time', validators=[InputRequired()], format="%Y-%m-%dT%H:%M", description="YYYY-MM-DD HH:MM:SS") # Must enter end time
   max_tickets = IntegerField('Max Ticket Number', validators=[InputRequired()]) # Must enter max tickets
   ticket_price = DecimalField('Ticket Price', validators=[InputRequired()]) # Must enter max tickets
   Status_id = SelectField(u'Select status', choices=[(1, 'Upcoming'), (2, 'Inactive'), (3, 'Booked'), (4, 'Cancelled')], validators=[InputRequired()])

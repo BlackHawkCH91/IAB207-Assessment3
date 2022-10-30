@@ -15,7 +15,8 @@
         <h1>Event Details:</h1>
         <hr>
         <div class="p-2"></div>
-        <form href="{{ url_for('event.create') }}">
+        <form method="post" enctype="multipart/form-data" action>
+            {{ form.csrf_token }}
             
             <div class="form-group row">
                 <div class="col-lg-9">
@@ -86,7 +87,7 @@
                 {{ form.description(class_="form-control", rows=5) }}
                 <br>
                 <h4>Choose an image:</h4>
-                {{ form.image(class_="form-control") }}
+                {{ form.image(class_="form-control-file") }}
             </div>
             <br>
             {{ form.submit(class_="btn btn-primary btn-md") }}
