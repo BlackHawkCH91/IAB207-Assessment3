@@ -20,6 +20,19 @@ def show(id):
 def create():
   print('Method type: ', request.method)
   form = EventForm()
+  print(form.event_name.data)
+  print(form.description.data)
+  print(form.image.data)
+  print(form.location.data)
+  print(form.city.data)
+  print(form.Catergory_id.data)
+  print(form.start_time.data)
+  print(form.end_time.data)
+  print(form.max_tickets.data)
+  print(form.ticket_price.data)
+  print(form.Status_id.data)
+  print(form.submit.data)
+
   if form.validate_on_submit():
     #checks and returns image
     db_file_path=check_upload_file(form)
