@@ -14,12 +14,79 @@
 
 {% block content %}
 <div class="container-fluid justify-content-start col-8" id="mainArea">
-    <h1>Update / Delete: </h1>
+    <div class="p-4"></div>
+    <h1>Update Event:</h1>
     <hr>
-    {{wtf.render_form(form)}}
-    <br>
-    <form method="POST">
-    <button type="submit" name='delete'class="btn btn-danger">Delete event</button>
+    <div class="p-2"></div>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="p-1"></div>
+        <div class="form-group row ">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="p-1 lineBreaks"></div>
+                        <h4>Event Name:</h4>
+                        {{form.event_name}}
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="p-1 lineBreaks"></div>
+                        <h4>Event location:</h4>
+                        {{form.location}}
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="p-1 lineBreaks"></div>
+                        <h4>Event image:</h4>
+                        {{form.image}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="p-1 lineBreaks"></div>
+                        <h4>Start:</h4>
+                        <h4>{{form.start_time}}</h4>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="p-1 lineBreaks"></div>
+                        <h4>End:</h4>
+                        <h4>{{form.end_time}}</h4>
+                    </div>      
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="p-1 lineBreaks"></div>
+                        <h4>Max Tickets:</h4>
+                        <h4>{{form.max_tickets}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                    <h4>Status:</h4>
+                    <h4>{{form.Status_id}}</h4>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                    <h4>Catergory:</h4>
+                    <h4>{{form.Catergory_id}}</h4>
+                    </div>
+                </div>
+        </div>
+        <div class="p-1"></div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+            <h4>Description:</h4>
+            {{form.description}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col 2">
+                {{form.submit}}
+            </div>
+        </div>
+        <div class="row">
+            <p></p>
+        </div>
+        <div class="row">
+            <div class="col 2">
+                    <button type="submit" name='delete'class="btn btn-danger">Delete event</button>
+            </div>
+        </div>
+        <br>
     </form>
 </div>
 {% endblock %}

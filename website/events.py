@@ -88,8 +88,10 @@ def updateEvent(EventId):
         return redirect(url_for('event.update'))
       #if valid submit form and update db
       if form.validate_on_submit:
+        db_file_path=check_upload_file(form)
         event.EventName = form.event_name.data
         event.Location = form.location.data
+        event.Image = db_file_path
         event.description = form.description.data
         event.StartDate = form.start_time.data
         event.EndDate = form.end_time.data
@@ -108,6 +110,7 @@ def updateEvent(EventId):
        #prefill form with current values
       form.event_name.data = event.EventName
       form.description.data = event.description
+      form.image.data = event.Image
       form.location.data = event.Location  # is there an easier way to do this so it prefills properly?
       form.Catergory_id.data = event.Catergory_id
       form.start_time.data = event.StartDate
@@ -115,4 +118,14 @@ def updateEvent(EventId):
       form.Status_id.data = event.Status_id
       form.max_tickets.data = event.MaxTickets
       return render_template('/updateEvent.html',EventId = EventId, event = event, form = form)
+    
+def check_upload_file(form):
+  #get file data from form  
+  fp=form.image.data
+  filename=fp.filename
+  BASE_PATH=os.path.dirname(__file__)
+  upload_path=os.path.join(BASE_PATH,'static/img',secure_filename(filename))
+  db_upload_path='/static/img/' + secure_filename(filename)
+  fp.save(upload_path)
+  return db_upload_path
     

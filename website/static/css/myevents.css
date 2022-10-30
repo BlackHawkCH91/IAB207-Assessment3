@@ -2,14 +2,14 @@
     width: 70%;
 }
 
-.booking {
+.event {
     background-color: #FFFFFF;
     box-shadow: 0px 3px 7px #636363;
     height: 200px;
     overflow: hidden;
 }
 
-.bookingImage {
+.eventImage {
     display: block;
     margin-top: -20px;
     height: 325px;
