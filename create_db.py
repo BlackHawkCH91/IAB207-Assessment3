@@ -14,7 +14,7 @@ ctx.push()
 db.create_all()
 
 categoryList = ["Basketball", "Cricket", "Gymnastics", "Netball", "Football", "Rugby", "Swimming", "Tennis"]
-EventStatuses = ["Upcoming", "Inactive", "Booked", "Cancelled"]
+EventStatuses = ["Upcoming", "Unpublished", "Sold-out", "Cancelled"]
 
 counter = 1
 

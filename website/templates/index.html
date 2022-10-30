@@ -98,6 +98,7 @@
         <div class="d-flex flex-wrap justify-content-around">
 
             {% for event in events %}
+            {% if (event.Status_id != 2) %}
                 <section id="firstEventItem">
                     <a href="{{url_for('event.show', id=event.EventId)}}" class="EventLink">
                         <div class="eventImgContainer">
@@ -116,6 +117,7 @@
                         <p class="eventTickets">Tickets: {{event.MaxTickets}}</p>
                     </a>
                 </section>
+                {% endif %}
             {% endfor %} 
 
         </div>

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, session, request, redirect, url_for, flash
 from .models import *
-from .forms import EventForm, ReviewForm
+from .forms import EventForm, ReviewForm, EventUpdate
 from . import db
 import os
 from werkzeug.utils import secure_filename
@@ -82,7 +82,7 @@ def update():
 @bp.route('/update/<EventId>', methods = ['GET', 'POST'])  
 @login_required
 def updateEvent(EventId):  
-    form = EventForm()
+    form = EventUpdate()
     event = Events.query.filter_by(EventId=EventId).first()
     deleteEvent = request.form.get('delete')
     #check user is creator else deny and return to myevents page
@@ -99,15 +99,12 @@ def updateEvent(EventId):
       #if valid submit form and update db
       if form.validate_on_submit:
         db_file_path=check_upload_file(form)
-        event.EventName = form.event_name.data
-        event.Location = form.location.data
         event.Image = db_file_path
         event.description = form.description.data
         event.StartDate = form.start_time.data
         event.EndDate = form.end_time.data
         event.MaxTickets = form.max_tickets.data
         event.Status_id = form.Status_id.data
-        event.Catergory_id = form.Catergory_id.data
           #try commit if db error returns to values before changed
         try:
           db.session.commit()
@@ -118,11 +115,8 @@ def updateEvent(EventId):
         
     elif request.method == "GET":
        #prefill form with current values
-      form.event_name.data = event.EventName
       form.description.data = event.description
       form.image.data = event.Image
-      form.location.data = event.Location  # is there an easier way to do this so it prefills properly?
-      form.Catergory_id.data = event.Catergory_id
       form.start_time.data = event.StartDate
       form.end_time.data = event.EndDate
       form.Status_id.data = event.Status_id
