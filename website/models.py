@@ -26,7 +26,8 @@ class Events(db.Model):
     __tablename__ = 'events'
     EventId = db.Column(db.Integer, primary_key=True)
     EventName = db.Column(db.String(80))
-    Location = db.Column(db.String(80))
+    Location = db.Column(db.String(150))
+    City = db.Column(db.String(150))
     StartDate = db.Column(db.DateTime)
     EndDate = db.Column(db.DateTime)
     description = db.Column(db.String(500))
@@ -34,6 +35,7 @@ class Events(db.Model):
     Status_id = db.Column(db.Integer)
     Catergory_id = db.Column(db.Integer)
     MaxTickets = db.Column(db.Integer)
+    TicketPrice = db.Column(db.Numeric(10,2))
     UserId = db.Column(db.Integer)
 	#relations
     reviews = db.relationship('Reviews', backref='event')

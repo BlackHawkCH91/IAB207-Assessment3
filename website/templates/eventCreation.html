@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link type="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/eventCreation.css">
 {% endblock %}
@@ -13,38 +14,39 @@
         <div class="p-4"></div>
         <h1>Event Details:</h1>
         <hr>
-        {{wtf.render_form(form)}}
         <div class="p-2"></div>
-        <form>
-            <h4>Event name:</h4>
-            <input type="text" class="form-control" placeholder="Event Name">
+        <form href="{{ url_for('event.create') }}">
+            
+            <div class="form-group row">
+                <div class="col-lg-9">
+                    <h4>Event name:</h4>
+                    {{ form.event_name(class_="form-control", placeholder="Event Name") }}
+                </div>
+                
+                <div class="col-lg-3">
+                    <h4>Status:</h4>
+                    {{ form.Status_id(class_="form-control") }}
+                </div>
+            </div>
+            
 
             <div class="p-1"></div>
             <div class="form-group row">
                 <div class="col-xl-6 col-lg-12">
                     <h4>Location:</h4>
-                    <input type="text" class="form-control" placeholder="Location">
+                    {{ form.location(class_="form-control", placeholder="Location") }}
                 </div>
 
                 <div class="p-1 lineBreaks"></div>
                 <div class="col-xl-3 col-lg-6 col-sm-12">
                     <h4>City:</h4>
-                    <input type="text" class="form-control" placeholder="City">
+                    {{ form.city(class_="form-control", placeholder="City") }}
                 </div>
 
                 <div class="p-1 lineBreaks"></div>
                 <div class="col-xl-3 col-lg-6 col-sm-12">
                     <h4>Sport:</h4>
-                    <select class="form-select" name="sport">
-                        <option>Basketball</option>
-                        <option>Cricket</option>
-                        <option>Gymnastics</option>
-                        <option>Netball</option>
-                        <option>Football</option>
-                        <option>Rugby</option>
-                        <option>Swimming</option>
-                        <option>Tennis</option>
-                    </select>
+                    {{ form.Catergory_id(class_="form-control") }}
                 </div>
                 
             </div>
@@ -55,11 +57,11 @@
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
                             <h4>Start:</h4>
-                            <input type="datetime-local" class="form-control">
+                            {{ form.start_time(class_="form-control") }}
                         </div>
                         <div class="col-sm-6 col-xs-12">
                             <h4>End:</h4>
-                            <input type="datetime-local" class="form-control">
+                            {{ form.end_time(class_="form-control") }}
                         </div>
                     </div>
                 </div>
@@ -67,20 +69,27 @@
                 <div class="col-lg-3">
                     <div class="p-1 lineBreaks"></div>
                     <h4>Number of tickets:</h4>
-                    <input type="number" class="form-control" id="ticketNumInput" value="1">
+                    {{ form.max_tickets(class_="form-control", placeholder="Number of tickets", value=1) }}
                 </div>
                 <div class="col-lg-3">
                     <div class="p-1 lineBreaks"></div>
                     <h4>Ticket price:</h4>
-                    <input type="number" class="form-control" id="ticketNumInput" value="1">
+                    {{ form.ticket_price(class_="form-control", placeholder="Ticket Price") }}
                 </div>
             </div>
+
+            <div class="p-1"></div>
 
             <div class="p-4"></div>
             <div class="col-12">
                 <h4>Description:</h4>
-                <textarea class="form-control" rows="5"></textarea>
+                {{ form.description(class_="form-control", rows=5) }}
+                <br>
+                <h4>Choose an image:</h4>
+                {{ form.image(class_="form-control") }}
             </div>
+            <br>
+            {{ form.submit(class_="btn btn-primary btn-md") }}
         </form>
     </div>
 {% endblock %}
