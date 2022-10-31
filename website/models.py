@@ -11,6 +11,7 @@ class Users(db.Model, UserMixin):
     FirstName = db.Column(db.String(100), index=True, nullable=False)
     LastName = db.Column(db.String(100), index=True, nullable=False)
     Email = db.Column(db.String(100), index=True, nullable=False)
+    ContactNumber = db.Column(db.String(100), index=True, nullable=False)
 	#encrypted password is stored
 	#at least 255 chars long
     password_hash = db.Column(db.String(255), nullable=False)

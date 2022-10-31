@@ -48,6 +48,7 @@ def register():
             lname = register.last_name.data
             pwd = register.password.data
             email=register.email_id.data
+            number=register.number.data
             #check if a user exists
             u1 = Users.query.filter_by(Username=uname).first()
             if u1:
@@ -58,7 +59,7 @@ def register():
             #create a new user model object
             new_user = Users(
                 Username=uname, FirstName = fname, LastName = lname, 
-                password_hash=pwd_hash, Email=email)
+                password_hash=pwd_hash, Email=email, ContactNumber=number)
             db.session.add(new_user)
             db.session.commit()
             #commit to the database and redirect to HTML page

@@ -15,67 +15,53 @@
 {% block content %}
 <div class="container-fluid justify-content-start col-8" id="mainArea">
     <div class="p-4"></div>
-    <h1>Update Event:</h1>
+    <h1>Update Event: {{event.EventName}}</h1>
     <hr>
     <div class="p-2"></div>
     <form method="POST" enctype="multipart/form-data">
         <div class="p-1"></div>
         <div class="form-group row ">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="p-1 lineBreaks"></div>
+                    <h4>Start:</h4>
+                    <h4>{{form.start_time(class_="form-control")}}</h4>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="p-1 lineBreaks"></div>
+                    <h4>End:</h4>
+                    <h4>{{form.end_time(class_="form-control")}}</h4>
+                </div>      
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="p-1 lineBreaks"></div>
+                    <h4>Max Tickets:</h4>
+                    <h4>{{form.max_tickets(class_="form-control")}}</h4>
+                </div>
+            </div>
                 <div class="row">
+                    
                     <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="p-1 lineBreaks"></div>
-                        <h4>Event Name:</h4>
-                        {{form.event_name}}
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="p-1 lineBreaks"></div>
-                        <h4>Event location:</h4>
-                        {{form.location}}
-                    </div>
+                        <h4>Status:</h4>
+                        <h4>{{form.Status_id(class_="form-control")}}</h4>
+                        </div>
                     <div class="col-lg-3 col-md-6 col-sm-12">
                         <div class="p-1 lineBreaks"></div>
                         <h4>Event image:</h4>
                         {{form.image}}
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="p-1 lineBreaks"></div>
-                        <h4>Start:</h4>
-                        <h4>{{form.start_time}}</h4>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="p-1 lineBreaks"></div>
-                        <h4>End:</h4>
-                        <h4>{{form.end_time}}</h4>
-                    </div>      
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="p-1 lineBreaks"></div>
-                        <h4>Max Tickets:</h4>
-                        <h4>{{form.max_tickets}}</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                    <h4>Status:</h4>
-                    <h4>{{form.Status_id}}</h4>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                    <h4>Catergory:</h4>
-                    <h4>{{form.Catergory_id}}</h4>
-                    </div>
-                </div>
         </div>
         <div class="p-1"></div>
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="col-lg-8">
             <h4>Description:</h4>
-            {{form.description}}
+            {{form.description(class_="form-control")}}
             </div>
         </div>
         <div class="row">
-            <div class="col 2">
-                {{form.submit}}
+            <div class="p-1"></div>
+            <div class="col col-lg-1">
+                {{form.submit(class_="btn btn-primary btn-md")}}
             </div>
         </div>
         <div class="row">

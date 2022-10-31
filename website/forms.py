@@ -22,6 +22,7 @@ class RegisterForm(FlaskForm):
     first_name=StringField("First Name", validators=[InputRequired()])
     last_name=StringField("Last Name", validators=[InputRequired()])
     email_id = StringField("Email Address", validators=[Email("Please enter a valid email")])
+    number = StringField("Contact Number", validators=[InputRequired()])
     #linking two fields - password should be equal to data entered in confirm
     password=PasswordField("Password", validators=[InputRequired(),
                   EqualTo('confirm', message="Passwords should match")])
@@ -52,7 +53,19 @@ class EventForm(FlaskForm):
   end_time = DateTimeLocalField('End Time', validators=[InputRequired()], format="%Y-%m-%dT%H:%M", description="YYYY-MM-DD HH:MM:SS") # Must enter end time
   max_tickets = IntegerField('Max Ticket Number', validators=[InputRequired()]) # Must enter max tickets
   ticket_price = DecimalField('Ticket Price', validators=[InputRequired()]) # Must enter max tickets
-  Status_id = SelectField(u'Select status', choices=[(1, 'Upcoming'), (2, 'Inactive'), (3, 'Booked'), (4, 'Cancelled')], validators=[InputRequired()])
+  Status_id = SelectField(u'Select status', choices=[(1, 'Upcoming'), (2, 'Unpublished'), (3, 'Sold-out'), (4, 'Cancelled')], validators=[InputRequired()])
+  submit = SubmitField("Submit")
+
+class EventUpdate(FlaskForm):
+  description = TextAreaField('Description', validators=[InputRequired()]) # Must enter description
+  image = FileField('Destination Image', validators=[
+    FileRequired(message='Image cannot be empty'),
+    FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')]) # Only accepts correct file types
+  start_time = DateTimeLocalField('Start Time', validators=[InputRequired()], format="%Y-%m-%dT%H:%M", description="YYYY-MM-DD HH:MM:SS") # Must enter start time
+  end_time = DateTimeLocalField('End Time', validators=[InputRequired()], format="%Y-%m-%dT%H:%M", description="YYYY-MM-DD HH:MM:SS") # Must enter end time
+  max_tickets = IntegerField('Max Ticket Number', validators=[InputRequired()]) # Must enter max tickets
+  ticket_price = DecimalField('Ticket Price', validators=[InputRequired()]) # Must enter max tickets
+  Status_id = SelectField(u'Select status', choices=[(1, 'Upcoming'), (2, 'Unpublished'), (3, 'Sold-out'), (4, 'Cancelled')], validators=[InputRequired()])
   submit = SubmitField("Submit")
 
 # Creates Booking Form
