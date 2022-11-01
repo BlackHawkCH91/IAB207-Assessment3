@@ -14,7 +14,10 @@
     margin-top: -20px;
     height: 325px;
 }
-
+.EventLink {
+    text-decoration: none;
+    color: black;
+}
 #imgSpacer {
     display: none;
 }

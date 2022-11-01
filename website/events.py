@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, session, request, redirect, url_for, flash
 from .models import *
-from .forms import EventForm, ReviewForm, EventUpdate
+from .forms import EventForm, ReviewForm, EventUpdate, BookingForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
@@ -13,16 +13,18 @@ bp = Blueprint('event',__name__, url_prefix='/events')
 def show(id):
     event = Events.query.filter_by(EventId=id).first()
     cform = ReviewForm()
+    dform = BookingForm()
     if cform.validate_on_submit():  
     #read the comment from the form
       review = Reviews(Title=cform.title.data,
                         Rating=cform.rating.data,
-                        Content=cform.comment.data,
+                        Content=cform.comment.data, 
                         User_id=current_user.UserId,
                         Event_id=id) 
       db.session.add(review) 
-      db.session.commit() 
-    return render_template('/event.html', event=event, form=cform)
+      db.session.commit()
+
+    return render_template('/event.html', event=event, form=cform, dform = dform)
 
 @bp.route('/eventcreation', methods = ['GET', 'POST'])
 @login_required
@@ -54,24 +56,6 @@ def check_upload_file(form):
   db_upload_path='/static/img/' + secure_filename(filename)
   fp.save(upload_path)
   return db_upload_path
-
-@bp.route('/<EventId>/comment', methods = ['GET', 'POST'])  
-@login_required
-def review(EventId):  
-    form = ReviewForm()  
-    event_obj = Events.query.filter_by(EventId=EventId).first() 
-    print(current_user); 
-    if form.validate_on_submit():  
-      #read the comment from the form
-      review = Reviews(title=form.title.data,
-                       rating=form.rating.data,
-                       comment=form.comment.data,
-                       submit=form.submit.data,
-                       user=current_user ) 
-      db.session.add(review) 
-      db.session.commit() 
-      print('Your review has been added', 'success') 
-    return redirect(url_for('events.event', EventId=EventId))
 
 @bp.route('/update', methods = ['GET', 'POST'])  
 @login_required
@@ -132,4 +116,21 @@ def check_upload_file(form):
   db_upload_path='/static/img/' + secure_filename(filename)
   fp.save(upload_path)
   return db_upload_path
-    
+
+@bp.route('/<id>/book', methods = ['GET', 'POST'])
+@login_required
+def book(id):  
+    dform = BookingForm()  
+    event = Events.query.filter_by(EventId=id).first() 
+    if dform.validate_on_submit():  
+      #read the comment from the form
+      booking = Bookings(Title=event.EventName,
+                       Content=event.description,
+                       TicketNum=dform.ticket_num.data,
+                       Event_id=event.EventId,
+                       User_id=current_user.UserId,
+                       Status_id=event.Status_id ) 
+      db.session.add(booking) 
+      db.session.commit() 
+      print('Your booking has been created', 'success') 
+    return redirect(url_for('event.show', id=event.EventId))
