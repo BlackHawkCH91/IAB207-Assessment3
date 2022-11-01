@@ -1,0 +1,15 @@
+#mainBox {
+    width: 25%;
+}
+
+@media only screen and (max-width: 1200px) {
+    #mainBox {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    #mainBox {
+        width: 90%;
+    }
+}
