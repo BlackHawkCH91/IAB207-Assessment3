@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request
-from .models import Events
+from .models import Events, Bookings
+from flask_login import login_required, current_user
 bp = Blueprint('main', __name__)
 
 
@@ -17,8 +18,10 @@ def index():
     return render_template("index.html", events = events) # currently incorrect
 
 @bp.route('/UserBookingHistory')
+@login_required
 def userBookingHistory():
-    return render_template("userBookingHistory.html")
+    bookings = Bookings.query.filter_by(User_id = current_user.UserId)
+    return render_template("userBookingHistory.html", bookings = bookings)
 
 @bp.route('/UserSettings')
 def userSettings():

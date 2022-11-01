@@ -16,19 +16,21 @@
         <hr>
         <div class="p-2"></div>
 
-        {% for i in range(4) %}
+        {% for booking in bookings %}
             <div class="booking row p-2">
+                <a href="{{url_for('event.show', id=booking.Event_id)}}" class="EventLink">
                 <div class="col-sm-7 col-xs-12">
-                    <h4>Event name - Open</h4>
-                    <p>Order ID: 294620</p>
-                    <p>Booked on: 5/4/2022 6:34 PM</p>
-                    <p>From: 12/4/2022 12:00 PM</p>
-                    <p>To: 12/4/2022 3:00 PM</p>
+                    <h4>{{booking.EventName}} - {{booking.Status}}</h4>
+                    <p>Order ID: {{booking.BookingId}}</p>
+                    <p>Tickets purchases: {{booking.TicketNum}}</p>
+                    <p>Booked on: {{booking.BookedOn}}</p>
+                    <p>Click to view event information</p>
                 </div>
                 <div class="p-3" id="imgSpacer"></div>
                 <div class="col-sm-5 col-xs-12">
-                    <img src="../static/img/beach.jpg" class="bookingImage">
+                    <img src="{{booking.image}}" class="bookingImage">
                 </div>
+            </a>
             </div>
             <div class="p-4"></div>
         {% endfor %} 
