@@ -36,6 +36,7 @@ class Events(db.Model):
     Status_id = db.Column(db.Integer)
     Catergory_id = db.Column(db.Integer)
     MaxTickets = db.Column(db.Integer)
+    tickets_booked = db.Column(db.Integer)
     TicketPrice = db.Column(db.Numeric(10,2))
     UserId = db.Column(db.Integer)
 	#relations
@@ -48,6 +49,13 @@ class Events(db.Model):
     
     def __repr__(self): #print
         return "{}".format(self.EventName)
+
+    def update(self, value):
+        self.tickets_booked += value
+
+    def statuscheck(self):
+        if self.tickets_booked == self.MaxTickets:
+            self.Status_id + 3
 class EventStatus(db.Model):
     __tablename__ = 'eventStatus'
     EventStatusId = db.Column(db.Integer, primary_key=True)
