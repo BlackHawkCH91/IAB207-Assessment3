@@ -19,7 +19,7 @@
         
             <div class="collapse navbar-collapse justify-content-between navItems" id="navCollapse">
                 <!-- Search form-->
-                <form class="form-inline navInput" style="margin-left: -9.5px;" action="{{ url_for('main.index') }}">
+                <form class="form-inline navInput" style="margin-left: -9.5px;" method="GET" action="{{ url_for('main.index') }}">
                     <div class="d-flex">
                         <input class="form-control m-2" type="text" placeholder="Search" name="search">
                         <button class="btn btn-outline-success m-2" type="submit">Search</button>
