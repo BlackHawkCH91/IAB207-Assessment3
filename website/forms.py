@@ -1,9 +1,12 @@
 from datetime import datetime
 from logging import PlaceHolder
 from tkinter import Widget
+from wsgiref.validate import validator
 from xmlrpc.client import DateTime
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, SelectField, IntegerField, DecimalField, DateTimeLocalField
+from markupsafe import Markup
+from wtforms import validators
+from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, SelectField, IntegerField, DecimalField, DateTimeLocalField, RadioField
 from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 
@@ -31,11 +34,12 @@ class RegisterForm(FlaskForm):
     #submit button
     submit = SubmitField("Register")
 
+star = Markup('<span class="fa fa-star rating"></span>')
 # Creates the review form
 class ReviewForm(FlaskForm):
   title = StringField('Review Title', [InputRequired()]) # Must enter title
-  rating = IntegerField('Rating out of 5', [InputRequired()]) # Must enter rating
-  comment = TextAreaField('Review comment', validators=[InputRequired()]) # Must enter review comment
+  rating = RadioField(star, validators=[InputRequired()], choices=[(1,1), (2,2), (3,3), (4,4), (5,5)]) # Must enter rating
+  comment = TextAreaField('Review comment', [InputRequired()]) # Must enter review comment
   submit = SubmitField('Post')
 
 #Creates event form

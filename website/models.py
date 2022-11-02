@@ -81,7 +81,7 @@ class Reviews(db.Model):
     Content = db.Column(db.String(400))
     CreatedAt = db.Column(db.DateTime, default=datetime.now())
     # to be corrected, confirm with Christian regarding implimentation 
-    Rating = db.Column(db.String(400))
+    Rating = db.Column(db.Integer)
     
     #foreign keys
     User_id = db.Column(db.Integer, db.ForeignKey('users.UserId'))

@@ -1,5 +1,6 @@
 //On input value change event
-function rating() {
+function EventRating() {
+    console.log("Running");
     var inputs = document.getElementsByClassName("ratingRadio");
     var labels = document.getElementsByClassName("ratingLabel");
     var radioValue = 0;

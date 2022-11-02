@@ -24,6 +24,7 @@ def show(id):
                         Event_id=id) 
       db.session.add(review) 
       db.session.commit()
+      return redirect(url_for('event.show', id=id))
 
     return render_template('/event.html', event=event, form=cform, dform = dform, remainder = remainder)
 
