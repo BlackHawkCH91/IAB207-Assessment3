@@ -14,6 +14,7 @@ def show(id):
     event = Events.query.filter_by(EventId=id).first()
     cform = ReviewForm()
     dform = BookingForm()
+    remainder = event.MaxTickets - event.tickets_booked
     if cform.validate_on_submit():  
     #read the comment from the form
       review = Reviews(Title=cform.title.data,
@@ -24,7 +25,7 @@ def show(id):
       db.session.add(review) 
       db.session.commit()
 
-    return render_template('/event.html', event=event, form=cform, dform = dform)
+    return render_template('/event.html', event=event, form=cform, dform = dform, remainder = remainder)
 
 @bp.route('/eventcreation', methods = ['GET', 'POST'])
 @login_required
@@ -38,7 +39,7 @@ def create():
     event=Events(EventName=form.event_name.data,description=form.description.data, 
     Image=db_file_path,Location=form.location.data, City=form.city.data, StartDate=form.start_time.data,
     EndDate=form.end_time.data, MaxTickets=form.max_tickets.data,
-    Catergory_id=form.Catergory_id.data, Status_id=form.Status_id.data,
+    Catergory_id=form.Catergory_id.data, Status_id=form.Status_id.data, tickets_booked = 0,
     UserId=current_user.UserId)
     db.session.add(event)
     db.session.commit()
@@ -122,15 +123,27 @@ def check_upload_file(form):
 def book(id):  
     dform = BookingForm()  
     event = Events.query.filter_by(EventId=id).first() 
-    if dform.validate_on_submit():  
-      #read the comment from the form
-      booking = Bookings(Title=event.EventName,
-                       Content=event.description,
-                       TicketNum=dform.ticket_num.data,
-                       Event_id=event.EventId,
-                       User_id=current_user.UserId,
-                       Status_id=event.Status_id ) 
-      db.session.add(booking) 
-      db.session.commit() 
-      print('Your booking has been created', 'success') 
+    if dform.validate_on_submit():
+      booked_tickets=dform.ticket_num.data
+      event.update(booked_tickets)
+
+      if event.tickets_booked <= event.MaxTickets:
+        #read the comment from the form
+        booking = Bookings(Title=event.EventName,
+                         Content=event.description,
+                         TicketNum=dform.ticket_num.data,
+                         Event_id=event.EventId,
+                         User_id=current_user.UserId,
+                         Status_id=event.Status_id )
+
+        db.session.add(booking) 
+        db.session.commit()
+        if event.tickets_booked == event.MaxTickets:
+          event.Status_id = 3
+          db.session.commit()
+        print('Your booking has been created', 'success')
+        flash('Your booking has been created')
+        return redirect(url_for('event.show', id=event.EventId))
+      else:
+        flash('Cannot purchase more tickets than available')
     return redirect(url_for('event.show', id=event.EventId))
