@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/index.css">
     <script src="../static/js/IndexResponsive.js"></script>
+    <script src="../static/js/eventCategories.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -14,7 +15,7 @@
         <div class="UpcomingEventHeader" id="UpcomingEventHeader">
             <form class="form-inline" style="display: inline-block;">
                 <h1>Upcoming events in:</h1>
-                <select class="form-select form-select-lg">
+                <select class="form-select form-select-lg" id="categorySelect">
                     <option>Brisbane</option>
                     <option>Toowoomba</option>
                     <option>Mackay</option>
@@ -32,56 +33,56 @@
             <form>
                 <div class="d-flex flex-row justify-content-center flex-wrap">
                     <div class="noselect">
-                        <input type="checkbox" id="cat1" class="catCheckbox" name="sportCat">
+                        <input type="checkbox" id="cat1" class="catCheckbox" name="sportCat" value="1" onchange="SportCategories()">
                         <label class="p-3 m-1 sportPicto" for="cat1">
                             <img class="pictoImg" src="../static/img/pictoImg/basketball.png">
                             Basketball
                         </label>
                     </div>
                     <div class="noselect">
-                        <input type="checkbox" id="cat2" class="catCheckbox" name="sportCat">
+                        <input type="checkbox" id="cat2" class="catCheckbox" name="sportCat" value="2" onchange="SportCategories()">
                         <label class="p-3 m-1 sportPicto" for="cat2">
                             <img class="pictoImg" src="../static/img/pictoImg/cricket.png">
                             Cricket
                         </label>
                     </div>
                     <div class="noselect">
-                        <input type="checkbox" id="cat3" class="catCheckbox" name="sportCat">
+                        <input type="checkbox" id="cat3" class="catCheckbox" name="sportCat" value="3" onchange="SportCategories()">
                         <label class="p-3 m-1 sportPicto" for="cat3">
                             <img class="pictoImg" src="../static/img/pictoImg/gymnastics.png">
                             Gymnastics
                         </label>
                     </div>
                     <div class="noselect">
-                        <input type="checkbox" id="cat4" class="catCheckbox" name="sportCat">
+                        <input type="checkbox" id="cat4" class="catCheckbox" name="sportCat" value="4" onchange="SportCategories()">
                         <label class="p-3 m-1 sportPicto" for="cat4">
                             <img class="pictoImg" src="../static/img/pictoImg/netball.png">
                             Netball
                         </label>
                     </div>
                     <div class="noselect">
-                        <input type="checkbox" id="cat5" class="catCheckbox" name="sportCat">
+                        <input type="checkbox" id="cat5" class="catCheckbox" name="sportCat" value="5" onchange="SportCategories()">
                         <label class="p-3 m-1 sportPicto" for="cat5">
                             <img class="pictoImg" src="../static/img/pictoImg/nfl.png">
                             Football
                         </label>
                     </div>
                     <div class="noselect">
-                        <input type="checkbox" id="cat6" class="catCheckbox" name="sportCat">
+                        <input type="checkbox" id="cat6" class="catCheckbox" name="sportCat" value="6" onchange="SportCategories()">
                         <label class="p-3 m-1 sportPicto" for="cat6">
                             <img class="pictoImg" src="../static/img/pictoImg/nrl.png">
                             Rugby
                         </label>
                     </div>
                     <div class="noselect">
-                        <input type="checkbox" id="cat7" class="catCheckbox" name="sportCat">
+                        <input type="checkbox" id="cat7" class="catCheckbox" name="sportCat" value="7" onchange="SportCategories()">
                         <label class="p-3 m-1 sportPicto" for="cat7">
                             <img class="pictoImg" src="../static/img/pictoImg/swimming.png">
                             Swimming
                         </label>
                     </div>
                     <div class="noselect">
-                        <input type="checkbox" id="cat8" class="catCheckbox" name="sportCat">
+                        <input type="checkbox" id="cat8" class="catCheckbox" name="sportCat" value="8" onchange="SportCategories()">
                         <label class="p-3 m-1 sportPicto" for="cat8">
                             <img class="pictoImg" src="../static/img/pictoImg/tennis.png">
                             Tennis
@@ -99,10 +100,10 @@
 
             {% for event in events %}
             {% if (event.Status_id != 2) %}
-                <section id="firstEventItem">
+                <section id="firstEventItem" class="category{{ event.Catergory_id }} eventItems">
                     <a href="{{url_for('event.show', id=event.EventId)}}" class="EventLink">
                         <div class="eventImgContainer">
-                            <img class="eventImg" src="{{event.Image}}" alt="{{event.name}}">
+                            <img class="eventImg" src="{{event.Image}}" alt="{{event.EventName}}">
                         </div>
 
                         <div class="eventItem p-3">
