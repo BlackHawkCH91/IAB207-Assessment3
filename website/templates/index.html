@@ -15,16 +15,10 @@
         <div class="UpcomingEventHeader" id="UpcomingEventHeader">
             <form class="form-inline" style="display: inline-block;">
                 <h1>Upcoming events in:</h1>
-                <select class="form-select form-select-lg" id="categorySelect">
-                    <option>Brisbane</option>
-                    <option>Toowoomba</option>
-                    <option>Mackay</option>
-                    <option>Townsville</option>
-                    <option>Gold Coast</option>
-                    <option>Cairns</option>
-                    <option>Charters Towers</option>
-                    <option>Warwick</option>
-                    <option>Gympie</option>
+                <select class="form-select form-select-lg" id="citySelect" onchange="SportCategories()">
+                    {% for city in cities %}
+                        <option>{{ city }}</option>
+                    {% endfor %}
                 </select>
             </form>
         </div>
@@ -100,7 +94,7 @@
 
             {% for event in events %}
             {% if (event.Status_id != 2) %}
-                <section id="firstEventItem" class="category{{ event.Catergory_id }} eventItems">
+                <section id="firstEventItem" class="category{{ event.Catergory_id }} eventItems" data-city="{{ event.City }}">
                     <a href="{{url_for('event.show', id=event.EventId)}}" class="EventLink">
                         <div class="eventImgContainer">
                             <img class="eventImg" src="{{event.Image}}" alt="{{event.EventName}}">

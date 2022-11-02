@@ -11,11 +11,21 @@ def index():
     if search is not None:
         eventName = "%" + request.args["search"] + "%"
         events = Events.query.filter(Events.EventName.like(eventName)).all()
-        return render_template("index.html", events = events)
+
+        cities = ["All"]
+        for event in events:
+            if event.City not in cities:
+                cities.append(event.City)
+
+        return render_template("index.html", events = events, cities = cities)
     
     events = Events.query.all()
+    cities = ["All"]
+    for event in events:
+        if event.City not in cities:
+            cities.append(event.City)
 
-    return render_template("index.html", events = events) # currently incorrect
+    return render_template("index.html", events = events, cities = cities) # currently incorrect
 
 @bp.route('/UserBookingHistory')
 @login_required
