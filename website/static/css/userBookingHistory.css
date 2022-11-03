@@ -22,6 +22,16 @@
     display: none;
 }
 
+.EventLink {
+    text-decoration: none;
+    color: black;
+}
+
+.EventLink:link, .EventLink:hover, .EventLink:active {
+    text-decoration: none;
+    color: black;
+}
+
 @media only screen and (max-width: 1200px) {
     #mainArea {
         width: 95%;

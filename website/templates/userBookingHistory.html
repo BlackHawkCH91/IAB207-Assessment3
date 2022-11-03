@@ -16,23 +16,26 @@
         <hr>
         <div class="p-2"></div>
 
-        {% for booking in bookings %}
-            <div class="booking row p-2">
+        <div class="container-fluid" id="mainArea">
+            {% for booking in bookings %}
                 <a href="{{url_for('event.show', id=booking.Event_id)}}" class="EventLink">
-                <div class="col-sm-7 col-xs-12">
-                    <h4>{{booking.EventName}} - {{booking.Status}}</h4>
-                    <p>Booked By: {{booking.user.FirstName}} {{booking.user.LastName}}</p>
-                    <p>Order ID: {{booking.BookingId}} Tickets purchases: {{booking.TicketNum}}</p>
-                    <p>Booked on: {{booking.BookedOn}}</p>
-                    <p>Click to view event information</p>
-                </div>
-                <div class="p-3" id="imgSpacer"></div>
-                <div class="col-sm-5 col-xs-12">
-                    <img src="{{booking.event.Image}}" class="bookingImage">
-                </div>
-            </a>
-            </div>
+                    <div class="booking row p-2">
+                        <div class="col-sm-7 col-xs-12">
+                            <h4>{{booking.EventName}} - {{booking.Status}}</h4>
+                            <p>Booked By: {{booking.user.FirstName}} {{booking.user.LastName}}</p>
+                            <p>Order ID: {{booking.BookingId}} Tickets purchases: {{booking.TicketNum}}</p>
+                            <p>Booked on: {{booking.BookedOn}}</p>
+                            <p>Click to view event information</p>
+                        </div>
+                        <div class="p-3" id="imgSpacer"></div>
+                        <div class="col-sm-5 col-xs-12">
+                            <img src="{{booking.event.Image}}" class="bookingImage">
+                        </div>
+                    </div>
+                </a>
             <div class="p-4"></div>
-        {% endfor %} 
+            {% endfor %} 
+            <div class="p-5"></div>
+        </div>
     </div>
 {% endblock %}
