@@ -56,7 +56,7 @@ class EventForm(FlaskForm):
   start_time = DateTimeLocalField('Start Time', validators=[InputRequired()], format="%Y-%m-%dT%H:%M", description="YYYY-MM-DD HH:MM:SS") # Must enter start time
   end_time = DateTimeLocalField('End Time', validators=[InputRequired()], format="%Y-%m-%dT%H:%M", description="YYYY-MM-DD HH:MM:SS") # Must enter end time
   max_tickets = IntegerField('Max Ticket Number', validators=[InputRequired(), NumberRange(min=0, max=5000)]) # Must enter max tickets
-  ticket_price = StringField('Ticket Price', [InputRequired(), validators.Regexp('^\d*\.?\d*$')]) # Must enter ticket price
+  ticket_price = StringField('Ticket Price', [InputRequired(), validators.Regexp('^[^\-]\d*\.?\d*$')]) # Must enter ticket price
   #ticket_price = DecimalField('Ticket Price', validators=[InputRequired(), NumberRange(min=0, max=1000)]) # Must enter price
   Status_id = SelectField(u'Select status', choices=[(1, 'Upcoming'), (2, 'Unpublished'), (3, 'Sold-out'), (4, 'Cancelled')], validators=[InputRequired()])
   submit = SubmitField("Submit")
