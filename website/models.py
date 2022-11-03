@@ -52,10 +52,6 @@ class Events(db.Model):
 
     def update(self, value):
         self.tickets_booked += value
-
-    def statuscheck(self):
-        if self.tickets_booked == self.MaxTickets:
-            self.Status_id + 3
 class EventStatus(db.Model):
     __tablename__ = 'eventStatus'
     EventStatusId = db.Column(db.Integer, primary_key=True)
