@@ -37,7 +37,7 @@ class Events(db.Model):
     Catergory_id = db.Column(db.Integer)
     MaxTickets = db.Column(db.Integer)
     tickets_booked = db.Column(db.Integer)
-    TicketPrice = db.Column(db.Numeric(10,2))
+    TicketPrice = db.Column(db.String(80))
     UserId = db.Column(db.Integer)
 	#relations
     reviews = db.relationship('Reviews', backref='event')

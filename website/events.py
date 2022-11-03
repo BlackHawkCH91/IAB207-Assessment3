@@ -39,7 +39,7 @@ def create():
     db_file_path=check_upload_file(form)
     event=Events(EventName=form.event_name.data,description=form.description.data, 
     Image=db_file_path,Location=form.location.data, City=form.city.data, StartDate=form.start_time.data,
-    EndDate=form.end_time.data, MaxTickets=form.max_tickets.data,
+    EndDate=form.end_time.data, MaxTickets=form.max_tickets.data, TicketPrice=form.ticket_price.data,
     Catergory_id=form.Catergory_id.data, Status_id=form.Status_id.data, tickets_booked = 0,
     UserId=current_user.UserId)
     db.session.add(event)
