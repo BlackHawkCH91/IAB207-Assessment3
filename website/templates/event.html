@@ -136,7 +136,7 @@
             <div class="col-md-12">  
                 <div class="p-3 review">
                     <h2>{{ review.Title }}</h2>
-                    <p>{{ review.user.FirstName }} - {{ review.CreatedAt }}</p>
+                    <p>{{ review.user.Username }} - {{ review.CreatedAt }}</p>
                     <div id="ratingDiv">
                         {% for i in range(review.Rating) %}
                             <span class="fa fa-star rating checked"></span>
