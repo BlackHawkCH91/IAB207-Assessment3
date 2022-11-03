@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, SelectField, IntegerField, DecimalField, DateTimeLocalField
-from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 
 # Define accepted file types
@@ -48,8 +48,8 @@ class EventForm(FlaskForm):
   (5, 'Football'), (6, 'Rugby'), (7, 'Swimming'), (8, 'Tennis')], validators=[InputRequired()])
   start_time = DateTimeLocalField('Start Time', validators=[InputRequired()], format="%Y-%m-%dT%H:%M", description="YYYY-MM-DD HH:MM:SS") # Must enter start time
   end_time = DateTimeLocalField('End Time', validators=[InputRequired()], format="%Y-%m-%dT%H:%M", description="YYYY-MM-DD HH:MM:SS") # Must enter end time
-  max_tickets = IntegerField('Max Ticket Number', validators=[InputRequired()]) # Must enter max tickets
-  ticket_price = DecimalField('Ticket Price', validators=[InputRequired()]) # Must enter max tickets
+  max_tickets = IntegerField('Max Ticket Number', validators=[InputRequired(), NumberRange(min=0, max=5000)]) # Must enter max tickets
+  ticket_price = DecimalField('Ticket Price', validators=[InputRequired(), NumberRange(min=0, max=1000)]) # Must enter price
   Status_id = SelectField(u'Select status', choices=[(1, 'Upcoming'), (2, 'Unpublished'), (3, 'Sold-out'), (4, 'Cancelled')], validators=[InputRequired()])
   submit = SubmitField("Submit")
 
@@ -60,12 +60,12 @@ class EventUpdate(FlaskForm):
     FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')]) # Only accepts correct file types
   start_time = DateTimeLocalField('Start Time', validators=[InputRequired()], format="%Y-%m-%dT%H:%M", description="YYYY-MM-DD HH:MM:SS") # Must enter start time
   end_time = DateTimeLocalField('End Time', validators=[InputRequired()], format="%Y-%m-%dT%H:%M", description="YYYY-MM-DD HH:MM:SS") # Must enter end time
-  max_tickets = IntegerField('Max Ticket Number', validators=[InputRequired()]) # Must enter max tickets
-  ticket_price = DecimalField('Ticket Price', validators=[InputRequired()]) # Must enter max tickets
+  max_tickets = IntegerField('Max Ticket Number', validators=[InputRequired(), NumberRange(min=0, max=5000)]) # Must enter max tickets
+  ticket_price = DecimalField('Ticket Price', validators=[InputRequired(), NumberRange(min=0, max=1000)]) # Must enter max tickets
   Status_id = SelectField(u'Select status', choices=[(1, 'Upcoming'), (2, 'Unpublished'), (3, 'Sold-out'), (4, 'Cancelled')], validators=[InputRequired()])
   submit = SubmitField("Submit")
 
 # Creates Booking Form
 class BookingForm(FlaskForm):
-  ticket_num = IntegerField('Number of Tickets', validators=[InputRequired()]) #Must enter number of tickets
+  ticket_num = IntegerField('Number of Tickets', validators=[InputRequired(), NumberRange(min=0)]) #Must enter number of tickets
   submit = SubmitField("Submit")
