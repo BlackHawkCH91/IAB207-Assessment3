@@ -52,7 +52,7 @@ class EventForm(FlaskForm):
   ticket_price = DecimalField('Ticket Price', validators=[InputRequired()]) # Must enter max tickets
   Status_id = SelectField(u'Select status', choices=[(1, 'Upcoming'), (2, 'Unpublished'), (3, 'Sold-out'), (4, 'Cancelled')], validators=[InputRequired()])
   submit = SubmitField("Submit")
-
+  
 class EventUpdate(FlaskForm):
   description = TextAreaField('Description', validators=[InputRequired()]) # Must enter description
   image = FileField('Destination Image', validators=[
