@@ -41,7 +41,7 @@ class Events(db.Model):
     UserId = db.Column(db.Integer)
 	#relations
     reviews = db.relationship('Reviews', backref='event')
-    bookings = db.relationship('Bookings', backref='event')
+    bookings = db.relationship('Bookings', backref='EventName')
     #Foriegn Key
     Catergory_id = db.Column(db.Integer, db.ForeignKey('catergories.CatergoryId'))
     Status_id = db.Column(db.Integer, db.ForeignKey('eventStatus.EventStatusId'))
