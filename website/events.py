@@ -35,17 +35,20 @@ def create():
 
   if form.validate_on_submit():
     #checks and returns image
-    db_file_path=check_upload_file(form)
-    event=Events(EventName=form.event_name.data,description=form.description.data, 
-    Image=db_file_path,Location=form.location.data, City=form.city.data, StartDate=form.start_time.data,
-    EndDate=form.end_time.data, MaxTickets=form.max_tickets.data,
-    Catergory_id=form.Catergory_id.data, Status_id=form.Status_id.data, tickets_booked = 0,
-    UserId=current_user.UserId)
-    db.session.add(event)
-    db.session.commit()
-    print('Successfully created new sports event', 'success')
-    #redirect
-    return redirect(url_for('event.create'))
+    if form.start_time.data <= form.end_time.data:
+      db_file_path=check_upload_file(form)
+      event=Events(EventName=form.event_name.data,description=form.description.data, 
+      Image=db_file_path,Location=form.location.data, City=form.city.data, StartDate=form.start_time.data,
+      EndDate=form.end_time.data, MaxTickets=form.max_tickets.data,
+      Catergory_id=form.Catergory_id.data, Status_id=form.Status_id.data, tickets_booked = 0,
+      UserId=current_user.UserId)
+      db.session.add(event)
+      db.session.commit()
+      print('Successfully created new sports event', 'success')
+      #redirect
+      return redirect(url_for('event.create'))
+    else:
+      flash('Start date cannot be after end date')
   return render_template('eventCreation.html', form=form, current_user = current_user)
 
 def check_upload_file(form):
