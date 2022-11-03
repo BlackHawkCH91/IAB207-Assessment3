@@ -41,7 +41,7 @@ class Events(db.Model):
     UserId = db.Column(db.Integer)
 	#relations
     reviews = db.relationship('Reviews', backref='event')
-    bookings = db.relationship('Bookings', backref='EventName')
+    bookings = db.relationship('Bookings', backref='event')
     #Foriegn Key
     Catergory_id = db.Column(db.Integer, db.ForeignKey('catergories.CatergoryId'))
     Status_id = db.Column(db.Integer, db.ForeignKey('eventStatus.EventStatusId'))
@@ -52,10 +52,6 @@ class Events(db.Model):
 
     def update(self, value):
         self.tickets_booked += value
-
-    def statuscheck(self):
-        if self.tickets_booked == self.MaxTickets:
-            self.Status_id + 3
 class EventStatus(db.Model):
     __tablename__ = 'eventStatus'
     EventStatusId = db.Column(db.Integer, primary_key=True)

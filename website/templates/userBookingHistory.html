@@ -21,14 +21,14 @@
                 <a href="{{url_for('event.show', id=booking.Event_id)}}" class="EventLink">
                 <div class="col-sm-7 col-xs-12">
                     <h4>{{booking.EventName}} - {{booking.Status}}</h4>
-                    <p>Order ID: {{booking.BookingId}}</p>
-                    <p>Tickets purchases: {{booking.TicketNum}}</p>
+                    <p>Booked By: {{booking.user.FirstName}} {{booking.user.LastName}}</p>
+                    <p>Order ID: {{booking.BookingId}} Tickets purchases: {{booking.TicketNum}}</p>
                     <p>Booked on: {{booking.BookedOn}}</p>
                     <p>Click to view event information</p>
                 </div>
                 <div class="p-3" id="imgSpacer"></div>
                 <div class="col-sm-5 col-xs-12">
-                    <img src="{{booking.image}}" class="bookingImage">
+                    <img src="{{booking.event.Image}}" class="bookingImage">
                 </div>
             </a>
             </div>
